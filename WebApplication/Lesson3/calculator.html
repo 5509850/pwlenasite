@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <title>JavaScript Loan Calculator</title>
+    <style>
+        /* This is a CSS style sheet: it adds style to the program output */
+        .output {
+            font-weight: bold;
+        }
+        /* Calculated values in bold */
+        #payment {
+            text-decoration: underline;
+        }
+        /* For element with id="payment" */
+        #graph {
+            border: solid black 1px;
+        }
+        /* Chart has a simple border */
+        th, td {
+            vertical-align: top;
+        }
+        /* Don't center table cells */
+    </style>
+    
+    <script src="../Libraries/angular.min.js"></script>
+    <script src="angl.js"></script>
+
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <link href="../css/bootstrap-theme.css" rel="stylesheet" />
+</head>
+<body>
+    <script src="calculator.js"></script>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>
+               Кредитный калькулятор
+            </h1>
+        </div>
+        <div class="panel">
+            <!--
+              This is an HTML table with <input> elements that allow the user to enter data
+              and <span> elements in which the program can display its results.
+              These elements have ids like "interest" and "years". These ids are used
+              in the JavaScript code that follows the table. Note that some of the input
+              elements define "onchange" or "onclick" event handlers. These specify strings
+              of JavaScript code to be executed when the user enters data or clicks.
+            -->
+            <table>
+                <tr>
+                    <th>Данные по кредиту:</th>
+                    <td></td>
+                    <th>Остаток по кредиту, Основной долг, платежи по процентам</th>
+                </tr>
+                <tr>
+                    <td>Сумма кредита ($):</td>
+                    <td><input id="amount" onchange="calculate();"></td>
+                    <td rowspan=8>
+                        <canvas id="graph" width="400" height="250"></canvas>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Годовая ставка по кредиту (%):</td>
+                    <td><input id="apr" onchange="calculate();"></td>
+                </tr>
+                <tr>
+                    <td>Срок кредита (лет):</td>
+                    <td><input id="years" onchange="calculate();"></td>
+                <tr>
+                    <td>Zipcode (to find lenders):</td>
+                    <td><input id="zipcode" onchange="calculate();"></td>
+                <tr>
+                    <th>Платежи:</th>
+                    <td><button onclick="calculate();">Расчитать</button></td>
+                </tr>
+                <tr>
+                    <td>Ежемесячные платежи:</td>
+                    <td>$<span class="output" id="payment"></span></td>
+                </tr>
+                <tr>
+                    <td>Итого платежей:</td>
+                    <td>$<span class="output" id="total"></span></td>
+                </tr>
+                <tr>
+                    <td>Итого проценты:</td>
+                    <td>$<span class="output" id="totalinterest"></span></td>
+                </tr>              
+            </table>
+            <!-- The rest of this example is JavaScript code in the <script> tag below -->
+            <!-- Normally, this script would go in the document <head> above but it -->
+            <!-- is easier to understand here, after you've seen its HTML context. -->
+            <!-- angular-->
+        </div>
+<!--ANGULARjs https://habrahabr.ru/post/247283/ --------------------------------------------------------------------------------------->
+        <div ng-controller="appCTRL">
+            <h3 style="color:red">{{angulartext}}</h3>
+            <hr style="color:darkred;border:double" />
+            <br />
+            <ul>
+                <li ng-repeat="item in items">
+                    {{ item.name }}
+                </li>
+            </ul>
+
+        </div>
+
+        <!-- from this without $scope-->
+        <div ng-controller="app2CTRL as main">
+            <h3 style="color:red">{{angulartext}}</h3>
+            <hr style="color:darkred;border:double" />
+            <br />
+            <ul>
+                <li ng-repeat="item in main.items">
+                    {{ item.name }}
+                </li>
+            </ul>
+
+        </div>
+
+        <!--remove from array by click-->
+
+        <div ng-controller="MainCtrl as main">
+            
+            <h2 style="color:darkred;font-family:'Berlin Sans FB'">{{ main.clickable }}</h2>
+            <div>
+                {{ main.items.length }} шт. в наличии
+            </div>
+            <ul>
+                <li ng-repeat="item in main.items" ng-click="main.removeFromStock(item, $index)">
+                    {{ item.name }} ({{item.id}})
+                </li>
+            </ul>            
+            <p style="color:red" ng-if="main.show" ng-bind="main.deleted"></p>            
+        </div>
+        <div>      
+            <compose-email ng-model="composeEmail"></compose-email>
+        </div>
+            </div>
+
+    
+</body>
+</html>
