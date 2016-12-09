@@ -11,28 +11,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/lenapw.test.dll">
-      <publishTime>12/08/2016 16:36:19</publishTime>
+      <publishTime>12/09/2016 14:35:49</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
-      <publishTime>12/07/2015 19:04:38</publishTime>
+      <publishTime>11/30/2016 16:07:42</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.DependencyCollector.dll">
-      <publishTime>06/06/2016 15:40:16</publishTime>
+      <publishTime>12/07/2016 11:45:42</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
-      <publishTime>06/06/2016 15:40:34</publishTime>
+      <publishTime>12/07/2016 11:50:34</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
-      <publishTime>06/06/2016 10:45:24</publishTime>
+      <publishTime>12/06/2016 15:15:48</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Web.dll">
-      <publishTime>06/06/2016 15:40:34</publishTime>
+      <publishTime>12/07/2016 11:49:10</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.WindowsServer.dll">
-      <publishTime>06/06/2016 15:40:34</publishTime>
+      <publishTime>12/07/2016 11:50:34</publishTime>
     </File>
     <File Include="bin/Microsoft.ApplicationInsights.dll">
-      <publishTime>06/06/2016 10:42:24</publishTime>
+      <publishTime>12/06/2016 15:09:52</publishTime>
     </File>
     <File Include="bin/Microsoft.Diagnostics.Tracing.EventSource.dll">
       <publishTime>12/01/2015 14:31:46</publishTime>
@@ -50,7 +50,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/08/2013 15:15:08</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>10/02/2013 12:10:10</publishTime>
+      <publishTime>07/04/2016 13:31:52</publishTime>
     </File>
     <File Include="bin/System.IO.dll">
       <publishTime>02/18/2015 17:07:08</publishTime>
@@ -59,7 +59,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/09/2013 11:04:48</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>07/09/2013 11:04:28</publishTime>
+      <publishTime>01/28/2015 04:02:42</publishTime>
     </File>
     <File Include="bin/System.Runtime.dll">
       <publishTime>02/18/2015 17:07:08</publishTime>
@@ -68,10 +68,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/18/2015 17:07:08</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>07/09/2013 11:04:28</publishTime>
+      <publishTime>01/28/2015 04:02:54</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
-      <publishTime>07/09/2013 11:04:28</publishTime>
+      <publishTime>01/28/2015 04:03:46</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
       <publishTime>07/09/2013 11:04:28</publishTime>
@@ -87,6 +87,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
       <publishTime>07/09/2013 11:05:12</publishTime>
+    </File>
+    <File Include="bin/Telegram.Bot.dll">
+      <publishTime>09/16/2016 01:32:10</publishTime>
     </File>
     <File Include="calculator.html">
       <publishTime>12/08/2016 13:47:36</publishTime>
@@ -128,10 +131,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/08/2016 13:25:15</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>12/08/2016 13:43:20</publishTime>
+      <publishTime>12/09/2016 13:02:41</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/08/2016 16:36:19</publishTime>
+      <publishTime>12/09/2016 13:48:08</publishTime>
     </File>
   </ItemGroup>
 </Project>
