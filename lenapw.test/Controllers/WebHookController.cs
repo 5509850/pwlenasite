@@ -37,7 +37,17 @@ namespace lenapw.test.Controllers
             //http://localhost:18442/api/webhook/5
             //http://localhost:18442/api/webhook/get/5
 
-           
+            if (id == 555)
+            {
+                BotPWserver.Api.SetWebhookAsync("https://lena.pw/api/webhook").Wait();
+                return new Collection<Client>
+                       {
+                            {
+                                new Client { Id = id, Title = "webhook set up succesful" }
+                            }
+                       };
+            }
+            else
             {
                 return new Collection<Client>
                        {
@@ -55,12 +65,12 @@ namespace lenapw.test.Controllers
             if (message.Type == MessageType.TextMessage)
             {
                 // Echo each Message
-               Message x = await Bot.Api.SendTextMessage(message.Chat.Id, message.Text);
+               Message x = await BotPWserver.Api.SendTextMessage(message.Chat.Id, message.Text);
             }
             else if (message.Type == MessageType.PhotoMessage)
             {
                 // Download Photo
-                var file = await Bot.Api.GetFile(message.Photo.LastOrDefault()?.FileId);
+                var file = await BotPWserver.Api.GetFile(message.Photo.LastOrDefault()?.FileId);
 
                 var filename = file.FileId + "." + file.FilePath.Split('.').Last();
 
@@ -69,7 +79,7 @@ namespace lenapw.test.Controllers
                     await file.FileStream.CopyToAsync(saveImageStream);
                 }
 
-                Message x = await Bot.Api.SendTextMessage(message.Chat.Id, "Thx for the Pics");
+                Message x = await BotPWserver.Api.SendTextMessage(message.Chat.Id, "Thx for the Pics");
             }
 
             return Ok();
