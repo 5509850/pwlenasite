@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -15,7 +14,7 @@ namespace pwserver_bot
     //read me https://habrahabr.ru/post/316222/
     class Program
     {
-        private static string token = "<Token Bot>";
+        private static string token = "<Bot Token>";
         private static readonly TelegramBotClient bot = new TelegramBotClient(token);
         static void Main(string[] args)
         {
@@ -121,11 +120,10 @@ namespace pwserver_bot
                         {
                             SendMessage(chatid, @"1000 3 5
 Waiting...");
-                            await Task.Delay(500); // simulate longer running task
-                            string loanT = 1000.ToString("C2");
-                            SendMessage(chatid, string.Format(@"${0} Loan, {1} years term, {2}% - annual interest", loanT, 3, 5));
                             await Task.Delay(500); // simulate longer running task                            
-                            SendMessage(chatid, GetResultLoan(1000, 3, 5, 0));
+                            SendMessage(chatid, string.Format(@"{0} Loan, {1} years term, {2}% - annual interest", 1000.ToString("C2"), 3, 5));
+                            await Task.Delay(500); // simulate longer running task                            
+                            SendMessage(chatid, GetResultLoanEvenTotalPayments(1000, 3, 5, 0));
                             break;
                         }
                     case "/stop":
@@ -198,49 +196,71 @@ help - Displays a Help
 
         }
 
-        private static string GetResultLoan(int loan, double year, double interestpercent, double commis)
+        private static string GetResultLoanEvenTotalPayments(int loan, double year, double interestpercent, double commis)
+        {
+           var interest = interestpercent / 100;           
+           var monthly = (loan * (interest / 12)) / (1 - (1 / Math.Pow(1 + (interest / 12), (year * 12)))) + commis; // fixed
+           string monthlyText = monthly.ToString("C2");
+            
+
+           string totalText = (monthly * year * 12).ToString("C2");
+           string percentText = ((monthly * year * 12) - loan).ToString("C2");
+           return string.Format(@"Results:
+Payment Every Month	    {0}
+Total of {1} Payments	{2}
+Total Interest	  {3}", monthlyText, year * 12, totalText, percentText);
+        }
+
+        private static string GetResultLoanEvenPrincipalPayments(int loan, double year, double interestpercent, double commis)
         {
             var interest = interestpercent / 100;
             var percTotal = 0;
             var mainTotal = 0;
-            var monthlyTotal = 0;           
+            var monthlyTotal = 0;         
 
-            var amountRest = loan; //остаток основного долга
+            var amountRest = loan; //остаток основного долга            
+            var mainloan = (loan / (year * 12)); //fixed
             var percent = (amountRest * interest / 12);
-            var monthly = (loan * (interest / 12)) / (1 - (1 / Math.Pow(1 + (interest / 12), (year * 12)))) + commis; // fixed
+            var monthly = mainloan + percent + commis;
             string monthlyText = monthly.ToString("C2");
-            var mainloan = monthly - percent - commis;
-            ArrayList data = new ArrayList();
-            for (int i = 1; i < (year * 12) +1; i++) {               
-                data.Add(
-                    i + "-й месяц" + "/n" +
-                    amountRest.ToString("C2") + "/n" +
-                    (percent + commis).ToString("C2") + "/n" +
-                    mainloan.ToString("C2") + "/n" +
-                    monthly.ToString("C2"));
 
-                amountRest -= (int)mainloan;
-                mainTotal += (int)mainloan;
-                percTotal += (int)(percent + commis);
-                monthlyTotal += (int)monthly;
+            for (int i = 1; i < (year * 12) +1; i++) {
+               
+                    
+                    //amount: amountRest.toFixed(2).replace(/ (\d)(?= (\d{ 3})+\.)/ g, '$1,'),
+                    perc: (percent + $scope.commis).toFixed(2).replace(/ (\d)(?= (\d{ 3})+\.)/ g, '$1,'),
+                    main: mainloan.toFixed(2).replace(/ (\d)(?= (\d{ 3})+\.)/ g, '$1,'),
+                    pay: monthly.toFixed(2).replace(/ (\d)(?= (\d{ 3})+\.)/ g, '$1,'),                   
+                );
 
-                percent = (double)(amountRest * interest / 12);
-                mainloan = monthly - percent - commis;
+                amountRest -= mainloan;
+                mainTotal += mainloan;
+                percTotal += percent + $scope.commis;
+                monthlyTotal += monthly;
+
+                percent = parseFloat(($scope.amount - (i * ($scope.amount / ($scope.years * 12)))) *(interest / 12));
+                monthly = mainloan + percent + $scope.commis;
             }
             //Итого:
-            data.Add(
-                "Total:" + "/n" +
-                "0" + "/n" +
-                percTotal.ToString("C2") + "/n" +
-                mainTotal.ToString("C2") + "/n" +
-                monthlyTotal.ToString("C2") + "/n");
+            $scope.data.payments.push({
+                month: "ИТОГО:",
+                amount: "0",
+                perc: percTotal.toFixed(2).replace(/ (\d)(?= (\d{ 3})+\.)/ g, '$1,'),
+                main: mainTotal.toFixed(2).replace(/ (\d)(?= (\d{ 3})+\.)/ g, '$1,'),
+                pay: monthlyTotal.toFixed(2).replace(/ (\d)(?= (\d{ 3})+\.)/ g, '$1,'),
+                passed: true,
+                style: 'danger',
+                font: 'large'
+            });
+            $scope.total = monthlyTotal.toFixed(2).replace(/ (\d)(?= (\d{ 3})+\.)/ g, '$1,');
+            $scope.percent = percTotal.toFixed(2).replace(/ (\d)(?= (\d{ 3})+\.)/ g, '$1,');
 
-           string totalText = monthlyTotal.ToString("C2");
-           string percentText = percTotal.ToString("C2");
-           return string.Format(@"Results:
-Payment Every Month	    {0}
-Total of {1} Payments	{2}
-Total Interest	  {3}", monthly.ToString("C2"), year * 12, totalText, percentText);
+            return string.Format(@"Results:
+Even Principal Payments
+Payment First Month	    {0}
+Payment Last Month	    {1}
+Total of {2} Payments	{3}
+Total Interest	  {3}", monthlyText, monthlyText, year * 12, totalText, percentText);
         }
 
         private static async void SendMessage(Message incomingMessage, string messageForSend)
