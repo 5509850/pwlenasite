@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -118,7 +119,13 @@ namespace pwserver_bot
                         }                   
                     case "/example":
                         {
-                            SendMessage(chatid, @"1000 3 5");
+                            SendMessage(chatid, @"1000 3 5
+Waiting...");
+                            await Task.Delay(500); // simulate longer running task
+                            string loanT = 1000.ToString("C2");
+                            SendMessage(chatid, string.Format(@"${0} Loan, {1} years term, {2}% - annual interest", loanT, 3, 5));
+                            await Task.Delay(500); // simulate longer running task                            
+                            SendMessage(chatid, GetResultLoan(1000, 3, 5, 0));
                             break;
                         }
                     case "/stop":
@@ -191,6 +198,50 @@ help - Displays a Help
 
         }
 
+        private static string GetResultLoan(int loan, double year, double interestpercent, double commis)
+        {
+            var interest = interestpercent / 100;
+            var percTotal = 0;
+            var mainTotal = 0;
+            var monthlyTotal = 0;           
+
+            var amountRest = loan; //остаток основного долга
+            var percent = (amountRest * interest / 12);
+            var monthly = (loan * (interest / 12)) / (1 - (1 / Math.Pow(1 + (interest / 12), (year * 12)))) + commis; // fixed
+            string monthlyText = monthly.ToString("C2");
+            var mainloan = monthly - percent - commis;
+            ArrayList data = new ArrayList();
+            for (int i = 1; i < (year * 12) +1; i++) {               
+                data.Add(
+                    i + "-й месяц" + "/n" +
+                    amountRest.ToString("C2") + "/n" +
+                    (percent + commis).ToString("C2") + "/n" +
+                    mainloan.ToString("C2") + "/n" +
+                    monthly.ToString("C2"));
+
+                amountRest -= (int)mainloan;
+                mainTotal += (int)mainloan;
+                percTotal += (int)(percent + commis);
+                monthlyTotal += (int)monthly;
+
+                percent = (double)(amountRest * interest / 12);
+                mainloan = monthly - percent - commis;
+            }
+            //Итого:
+            data.Add(
+                "Total:" + "/n" +
+                "0" + "/n" +
+                percTotal.ToString("C2") + "/n" +
+                mainTotal.ToString("C2") + "/n" +
+                monthlyTotal.ToString("C2") + "/n");
+
+           string totalText = monthlyTotal.ToString("C2");
+           string percentText = percTotal.ToString("C2");
+           return string.Format(@"Results:
+Payment Every Month	    {0}
+Total of {1} Payments	{2}
+Total Interest	  {3}", monthly.ToString("C2"), year * 12, totalText, percentText);
+        }
 
         private static async void SendMessage(Message incomingMessage, string messageForSend)
         {
