@@ -9,6 +9,6 @@ namespace lenapw.test.Models
 
     static public class BotCreditme
     {
-        public static readonly TelegramBotClient Api = new TelegramBotClient("Bot Token Credit");
+        public static readonly TelegramBotClient Api = new TelegramBotClient("<Bot Token Credit>");
     }
 }

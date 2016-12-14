@@ -160,12 +160,14 @@
   <ItemGroup>
     <Content Include="calc.html" />
     <Content Include="calculator.html" />
+    <Content Include="chart.html" />
     <Content Include="css\angularPrint.css" />
     <Content Include="css\anychart-ui.min.css" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\MyStyleSheet.css" />
     <Content Include="Default.aspx" />
+    <Content Include="diagram.html" />
     <Content Include="Global.asax" />
     <Content Include="img\back.png" />
     <Content Include="img\coin.jpg" />
@@ -181,6 +183,7 @@
     <Content Include="js\calcr.js" />
     <Content Include="js\calce.js" />
     <Content Include="js\calculator.js" />
+    <Content Include="js\urlparametr.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
