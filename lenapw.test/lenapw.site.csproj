@@ -170,9 +170,11 @@
     <Content Include="img\back.png" />
     <Content Include="img\coin.jpg" />
     <Content Include="img\f1.png" />
+    <Content Include="img\f1r.png" />
     <Content Include="img\f2.png" />
+    <Content Include="img\f2r.png" />
+    <Content Include="img\logo.png" />
     <Content Include="img\ru.png" />
-    <Content Include="js\angular-loadscript.js" />
     <Content Include="js\angular.min.js" />
     <Content Include="js\angularPrint.js" />
     <Content Include="js\anychart-bundle.min.js" />

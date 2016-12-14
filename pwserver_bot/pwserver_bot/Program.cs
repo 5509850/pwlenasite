@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -102,7 +102,7 @@ namespace pwserver_bot
                     }
                 });
 
-                    await Task.Delay(500); // simulate longer running task
+                    await Task.Delay(1000); // simulate longer running task
 
                     await bot.SendTextMessageAsync(msg.Chat.Id, "Choose",
                         replyMarkup: keyboard);
@@ -115,16 +115,16 @@ namespace pwserver_bot
                         {
                             SendMessage(msg, "Welcome to Loan Calculator");
                             break;
-                        }                   
+                        }
                     case "/example":
                         {
                             SendMessage(chatid, @"10000 20 7
 ............");
-                            await Task.Delay(500); // simulate longer running task                            
+                            await Task.Delay(1000); // simulate longer running task                            
                             SendMessage(chatid, string.Format(@"{0} Loan, {1} Years Term, {2}% Annual Interest", 10000.ToString("C2"), 20, 7));
-                            await Task.Delay(500); // simulate longer running task                            
-                            SendMessage(chatid, GetResultLoanEvenPrincipalPayments(10000, 20, 7, 0));                            
-                            await Task.Delay(500); // simulate longer running task             
+                            await Task.Delay(1000); // simulate longer running task                            
+                            SendMessage(chatid, GetResultLoanEvenPrincipalPayments(10000, 20, 7, 0));
+                            await Task.Delay(1000); // simulate longer running task             
                             SendMessage(chatid, GetResultLoanEvenTotalPayments(10000, 20, 7, 0));
                             break;
                         }
@@ -163,10 +163,10 @@ namespace pwserver_bot
                                 else
                                 {
                                     SendMessage(chatid, string.Format(@"{0} Loan, {1} years term, {2}% - annual interest", a.ToString("C2"), y, p));
-                                }                                
-                                await Task.Delay(500); // simulate longer running task                            
+                                }
+                                await Task.Delay(1000); // simulate longer running task                            
                                 SendMessage(chatid, GetResultLoanEvenPrincipalPayments(a, y, p, c));
-                                await Task.Delay(500); // simulate longer running task             
+                                await Task.Delay(1000); // simulate longer running task             
                                 SendMessage(chatid, GetResultLoanEvenTotalPayments(a, y, p, c));
 
                             }
@@ -206,16 +206,16 @@ help - Displays a Help
 
         private static string GetResultLoanEvenTotalPayments(int loan, double year, double interestpercent, double commis)
         {
-           var interest = interestpercent / 100;           
-           var monthly = (loan * (interest / 12)) / (1 - (1 / Math.Pow(1 + (interest / 12), (year * 12)))) + commis; // fixed
-           string monthlyText = monthly.ToString("C2");
+            var interest = interestpercent / 100;
+            var monthly = (loan * (interest / 12)) / (1 - (1 / Math.Pow(1 + (interest / 12), (year * 12)))) + commis; // fixed
+            string monthlyText = monthly.ToString("C2");
 
-           double principalTotal = (loan * 100) / (monthly * year * 12);
-           double InterestTotal = (((monthly * year * 12) - loan) * 100) / (monthly * year * 12);
+            double principalTotal = (loan * 100) / (monthly * year * 12);
+            double InterestTotal = (((monthly * year * 12) - loan) * 100) / (monthly * year * 12);
 
-           string totalText = (monthly * year * 12).ToString("C2");
-           string percentText = ((monthly * year * 12) - loan).ToString("C2");
-           return string.Format(@"2)Even Total Payments
+            string totalText = (monthly * year * 12).ToString("C2");
+            string percentText = ((monthly * year * 12) - loan).ToString("C2");
+            return string.Format(@"2)Even Total Payments
 Results:
 Payment every month	    {0}
 Total of {1} payments   {2}
@@ -229,8 +229,8 @@ https://lena.pw/img/f2.png", monthlyText, year * 12, totalText, percentText, pri
         private static string GetResultLoanEvenPrincipalPayments(int loan, double year, double interestpercent, double commis)
         {
             var interest = interestpercent / 100;
-            double percTotal = 0;            
-            double monthlyTotal = 0;         
+            double percTotal = 0;
+            double monthlyTotal = 0;
 
             double amountRest = loan; //остаток основного долга            
             var mainloan = (loan / (year * 12)); //fixed
@@ -240,7 +240,7 @@ https://lena.pw/img/f2.png", monthlyText, year * 12, totalText, percentText, pri
 
             for (int i = 1; i < (year * 12) + 1; i++)
             {
-                amountRest -= mainloan;              
+                amountRest -= mainloan;
                 percTotal += percent + commis;
                 monthlyTotal += monthly;
                 percent = (loan - (i * (loan / (year * 12)))) * (interest / 12);
@@ -252,7 +252,7 @@ https://lena.pw/img/f2.png", monthlyText, year * 12, totalText, percentText, pri
 
             string monthlyTotalText = monthlyTotal.ToString("C2");
             string percTotallText = percTotal.ToString("C2");
-            string monthlyLastText = monthly.ToString("C2");            
+            string monthlyLastText = monthly.ToString("C2");
 
             return string.Format(@"1)Even Principal Payments
 Results:
@@ -294,7 +294,7 @@ https://lena.pw/img/f1.png", monthlyFirstText, monthlyLastText, year * 12, month
             catch (Exception ex)
             {
                 var err = ex.Message;
-            }                
+            }
         }
 
         private static bool IsArrayDigit(string[] array)
@@ -305,7 +305,7 @@ https://lena.pw/img/f1.png", monthlyFirstText, monthlyLastText, year * 12, month
                 return false;
             }
 
-            Match m;           
+            Match m;
             foreach (var vol in array)
             {
                 m = Regex.Match(vol, @"[0-9]+(\.[0-9]+)?");

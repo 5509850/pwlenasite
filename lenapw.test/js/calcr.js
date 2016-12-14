@@ -56,7 +56,7 @@ function CourceList($scope) {
     $scope.years = ye;
     $scope.commis = co;
 
-    $scope.amountText = $scope.amount.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+    $scope.amountText = $scope.amount.toFixed(2).replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ');
 
     //обработчик нажатия по кнопке "Печать"          
     $scope.printDiv = function (divName) {
@@ -70,18 +70,23 @@ function CourceList($scope) {
 
     $scope.clear = function () {
         $scope.data.payments.length = 0; // clear array
-        $scope.amountText = $scope.amount.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+        $scope.amountText = $scope.amount.toFixed(2).replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ');
         $scope.monthly = '';
         $scope.percent = '';
         $scope.total = '';
         $scope.coin = false;
-        $scope.evenTotal = false;
-        $scope.evenPrincipal = false;
+        //$scope.evenTotal = false;
+        //$scope.evenPrincipal = false;
+        document.getElementById("diagram").innerHTML = "";
+        document.getElementById("graph").innerHTML = "";
+        document.getElementById("graph").setAttribute("style", "display:block;width:540px;height:0");
+        $scope.fee = '';
         //chart();
     }
 
     //обработчик нажатия по кнопке "Расчитать"  
     $scope.calculateByMonth = function () {
+        var setGraph = [['1996', 300, 162, 242]];
         var an = 0;
         if ($scope.payment.type == 'Annu')
         {
@@ -90,6 +95,11 @@ function CourceList($scope) {
         save($scope.amount, $scope.apr, $scope.years, $scope.commis, an);
         $scope.commisShow = $scope.commis > 0;
         $scope.data.payments.length = 0; // clear array
+        setGraph.length = 0;// clear array
+        $scope.count = $scope.years * 12;
+        if ($scope.commis > 0) {
+            $scope.fee = '+ ежемесячные комиссии';
+        }
 
         if ($scope.payment.type == 'Annu') { //Аннуитетные-------------------------      
             var interest = parseFloat($scope.apr / 100);
@@ -99,13 +109,13 @@ function CourceList($scope) {
             $scope.paymentMonth = 'Ежемесячные платежи:';
 
             $scope.coin = true;
-            $scope.evenTotal = true;
-            $scope.evenPrincipal = false;
+            //$scope.evenTotal = true;
+            //$scope.evenPrincipal = false;
 
             var amountRest = $scope.amount; //остаток основного долга
             var percent = parseFloat(amountRest * interest / 12);
             var monthly = ($scope.amount * (interest / 12)) / (1 - (1 / Math.pow(1 + (interest / 12), ($scope.years * 12)))) + $scope.commis; // fixed
-            $scope.monthly = monthly.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+            $scope.monthly = monthly.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 ') + '₽';
             var mainloan = monthly - percent - $scope.commis;
 
             for (i = 1; i < ($scope.years * 12) + 1; i++) {
@@ -118,14 +128,20 @@ function CourceList($scope) {
                 }
                 $scope.data.payments.push({
                     month: i + '-й месяц',
-                    amount: amountRest.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
-                    perc: (percent + $scope.commis).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
-                    main: mainloan.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
-                    pay: monthly.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
+                    amount: amountRest.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 '),
+                    perc: (percent + $scope.commis).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 '),
+                    main: mainloan.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 '),
+                    pay: monthly.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 '),
                     passed: false,
                     style: mystyle,
                     font: 'inherit'
                 });
+
+                setGraph.push([
+                   i + '',
+                   monthly,
+                   percent + $scope.commis,
+                   mainloan]);
 
                 amountRest -= mainloan;
                 mainTotal += mainloan;
@@ -139,20 +155,23 @@ function CourceList($scope) {
             $scope.data.payments.push({
                 month: "ИТОГО:",
                 amount: "0",
-                perc: percTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
-                main: mainTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
-                pay: monthlyTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
+                perc: percTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 '),
+                main: mainTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 '),
+                pay: monthlyTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 '),
                 passed: true,
                 style: 'danger',
                 font: 'large'
             });
-            $scope.total = monthlyTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-            $scope.percent = percTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+            $scope.total = monthlyTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 ') + '₽';
+            $scope.percent = percTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 ') + '₽';
             var a = parseFloat($scope.amount);
             var b = parseFloat($scope.apr) / 100 / 12;
             var c = parseFloat(monthly);
             var d = parseFloat($scope.years) * 12;
             var t = monthlyTotal;
+            diagram(percTotal, $scope.amount, $scope.commis * $scope.years * 12, $scope.paymentMonth + ' ' + monthly.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 ') + '₽');
+            var titlegraph = 'Аннуитетные платежи (равные выплаты)';
+            graph(setGraph, titlegraph);
             //chart(a, b, c, d, t);        
         }
         else { //Дифференцированные платежи           --------------------------------------------------------------------------------------        
@@ -164,15 +183,16 @@ function CourceList($scope) {
             $scope.paymentMonth = 'Первый платеж:';
 
             $scope.coin = true;
-            $scope.evenTotal = false;
-            $scope.evenPrincipal = true;
+            //$scope.evenTotal = false;
+            //$scope.evenPrincipal = true;
 
             var amountRest = $scope.amount; //остаток основного долга            
             var mainloan = parseFloat($scope.amount / ($scope.years * 12)); //fixed
             var percent = parseFloat(amountRest * interest / 12);
             var monthly = mainloan + percent + $scope.commis;
 
-            $scope.monthly = monthly.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');            
+            $scope.monthly = monthly.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 ') + '₽';
+            var monthfordiagram = $scope.paymentMonth + monthly.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 ') + '₽';
 
             for (i = 1; i < ($scope.years * 12) + 1; i++) {
                 var mystyle = 'success';
@@ -184,14 +204,20 @@ function CourceList($scope) {
                 }
                 $scope.data.payments.push({
                     month: i + '-й месяц',
-                    amount: amountRest.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
-                    perc: (percent + $scope.commis).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
-                    main: mainloan.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
-                    pay: monthly.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
+                    amount: amountRest.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 '),
+                    perc: (percent + $scope.commis).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 '),
+                    main: mainloan.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 '),
+                    pay: monthly.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 '),
                     passed: false,
                     style: mystyle,
                     font: 'inherit'
                 });
+
+                setGraph.push([
+                  i + '',
+                  monthly,
+                  percent + $scope.commis,
+                  mainloan]);
 
                 amountRest -= mainloan;
                 mainTotal += mainloan;
@@ -205,20 +231,23 @@ function CourceList($scope) {
             $scope.data.payments.push({
                 month: "ИТОГО:",
                 amount: "0",
-                perc: percTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
-                main: mainTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
-                pay: monthlyTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'),
+                perc: percTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 '),
+                main: mainTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 '),
+                pay: monthlyTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 '),
                 passed: true,
                 style: 'danger',
                 font: 'large'
             });
-            $scope.total = monthlyTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-            $scope.percent = percTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+            $scope.total = monthlyTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 ') + '₽';
+            $scope.percent = percTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1 ') + '₽';
             var a = parseFloat($scope.amount);
             var b = parseFloat($scope.apr) / 100 / 12;
             var c = parseFloat($scope.amount / 12 / $scope.years);
             var d = parseFloat($scope.years) * 12;
             var t = monthlyTotal;
+            diagram(percTotal, $scope.amount, $scope.commis * $scope.years * 12, monthfordiagram);
+            var titlegraph = 'Дифференцированные платежи (уменьшаются)';
+            graph(setGraph, titlegraph);
             //chart(a, b, c, d, t);
         }
     }
@@ -244,9 +273,134 @@ function save(amount, apr, years, commis, annu) {
     }
 }
 
+function diagram(percTotal, amount, fee, title) {    
+    document.getElementById("diagram").innerHTML = "";
+    amount = Math.round(amount);    
+    var perc = Math.round(percTotal - fee);    
+    fee = Math.round(fee)    
+    if (fee == 0) {
+        chart = anychart.pie3d([
+                                    ['Итого: основной долг', amount],
+                                    ['Итого: проценты ', perc]
+        ]);
+    }
+    else {
+        chart = anychart.pie3d([
+                                    ['Итого: основной долг', amount],
+                                    ['Итого: проценты ', perc],
+                                    ['Итого: ежемесячные комиссии', fee]
+        ]);
+    }
+
+
+    // set container id for the chart
+    chart.container('diagram');
+
+    // set chart title text settings
+    chart.title(title);
+
+    chart.legend().position('right');
+    chart.legend().itemsLayout('vertical');
+    chart.legend().align('center');
+    //set chart radius
+    chart.radius('110%');
+
+    // create empty area in pie chart
+    chart.innerRadius('30%');
+
+    chart.labels().position('outside');
+    
+    // initiate chart drawing
+    chart.draw();
+}
+
+function graph(set, title) {
+    var gr = document.getElementById("graph");
+    gr.innerHTML = "";
+    gr.setAttribute("style", "display:block;width:540px;height:364px");
+    var dataSet = anychart.data.set(set);
+
+    // map data for the first series, take x from the zero area and value from the first area of data set
+    var seriesData_1 = dataSet.mapAs({ x: [0], value: [1] });
+
+    // map data for the second series, take x from the zero area and value from the second area of data set
+    var seriesData_2 = dataSet.mapAs({ x: [0], value: [3] });
+
+    // map data for the third series, take x from the zero area and value from the third area of data set
+    var seriesData_3 = dataSet.mapAs({ x: [0], value: [2] });
+
+    // create area chart
+    chart = anychart.area3d();
+
+    // set container id for the chart
+    chart.container('graph');
+
+    // turn on chart animation
+    chart.animation(true);
+
+    // turn off the crosshair
+    chart.crosshair(true);
+
+    // set chart title text settings
+    chart.title(title);
+    chart.title().padding([0, 0, 5, 0]);
+
+    // set interactivity and tooltips settings
+    chart.interactivity().hoverMode('byX');
+    chart.tooltip().displayMode('union');
+
+
+    chart.yAxis().title('Платежи в рублях');
+    chart.yAxis().labels().textFormatter(function () {
+        if (this.value == 0) return this.value;
+        return this.value + '₽';
+    });
+
+    // create zero line
+    var zeroLine = chart.lineMarker(0);
+    zeroLine.stroke("#ddd");
+    zeroLine.scale(chart.yScale());
+    zeroLine.value(0);
+
+    // helper function to setup label settings for all series
+    var setupSeries = function (series, name) {
+        series.name(name);
+        series.markers(false);
+        series.hoverMarkers(false);
+    };
+
+    // temp variable to store series instance
+    var series;
+
+    // create first series with mapped data
+    series = chart.area(seriesData_1);
+    setupSeries(series, 'Сумма платежа =');
+
+    // create second series with mapped data
+    series = chart.area(seriesData_2);
+    setupSeries(series, 'Основной долг +');
+
+    // create third series with mapped data
+    series = chart.area(seriesData_3);
+    setupSeries(series, 'Проценты');
+
+    // turn on legend
+    chart.legend().enabled(true).fontSize(13).padding([0, 0, 20, 0]);
+
+    chart.grid();
+    chart.grid(1).layout('vertical');
+
+    chart.zAspect('90%');
+    chart.zPadding(10);
+    chart.zAngle(75);
+
+    // initiate chart drawing
+    chart.draw();
+}
+
 // Chart monthly loan balance, interest and equity in an HTML <canvas> element.
 // If called with no arguments then just erase any previously drawn chart.
-function chart(principal, interest, monthly, payments, total) {
+function chartold(principal, interest, monthly, payments, total) {
 
    
     var graph = document.getElementById("graph"); // Get the <canvas> tag
