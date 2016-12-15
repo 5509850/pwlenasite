@@ -170,7 +170,8 @@
     <Content Include="diagram.html" />
     <Content Include="Global.asax" />
     <Content Include="img\back.png" />
-    <Content Include="img\coin.jpg" />
+    <Content Include="img\c.jpg" />
+    <Content Include="img\en.png" />
     <Content Include="img\f1.png" />
     <Content Include="img\f1r.png" />
     <Content Include="img\f2.png" />

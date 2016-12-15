@@ -3,104 +3,124 @@
 <head>
     <title>Кредитный калькулятор</title>
 
-    <script src="js/angular.min.js"></script>    
+    <script src="js/angular.min.js"></script>
     <script src="js/calcr.js"></script>
-    <script src="js/anychart-bundle.min.js"></script>    
+    <script src="js/anychart-bundle.min.js"></script>
 
     <link href="css/MyStyleSheet.css" rel="stylesheet" />
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/bootstrap-theme.css" rel="stylesheet" />
     <link href="css/anychart-ui.min.css" rel="stylesheet" />
 
-    <link media="print" rel="stylesheet" href="css/angularPrint.css">
-    <script src="js/angularPrint.js"></script>
-
     <style>
         html, body, #diagram {
             width: 100%;
             height: 100%;
-            margin: -10px;
+            margin: 0;
             padding: 0;
         }
     </style>
 
+
+    <link media="print" rel="stylesheet" href="css/angularPrint.css">
+    <script src="js/angularPrint.js"></script>
+
 </head>
 <body style="background:url(img/back.png)" ng-controller="CourceListCtrl">
-
     <div print-section class="container">
+        <a href="calculator.html"><img style="border:none; margin-top: 20px;" width="60" height="60" align="right" src="img/en.png" /></a>
         <div class="page-header">
             <h1 style="color:white">
                 Кредитный калькулятор
             </h1>
         </div>
+        <div align="right"><button print-btn style="align-content:flex-end;" class="btn-danger">Печать</button></div>
         <div class="panel">
             <table class="table table-hover">
                 <tr>
-                    <th><h2>Данные по кредиту:</h2></th>
+                    <th>
+                        <h3>Данные по кредиту:</h3>
+                    </th>
                     <td></td>
-                    <th><h2>Остаток по кредиту, долг, проценты</h2></th>
+                    <td rowspan=7>
+                        <img src="/img/c.jpg" ng-hide="logo" style="border:none" />
+                        <div ng-show="result" id="graph" style="margin: 0; padding: 0;"></div>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Сумма кредита (₽):</td>
-                    <td><input id="amount" ng-model="amount" ng-change="clear()" type="number" value="10000" min="1"></td>
-                    <td rowspan=7>
-                        <img src="/img/coin.jpg" ng-hide="coin" style="border:none" width="540" height="364" />
-                        <!--<img src="/img/f2r.png" ng-show="evenTotal" style="border:none" width="540" height="374" />
-                        <img src="/img/f1r.png" ng-show="evenPrincipal" style="border:none" width="540" height="374" />-->
-                        <!--<canvas id="graph" width="500" height="310" style="background:url(img/coin.jpg)"></canvas>--> 
-                        <div id="graph" style="width: 540px;  height: 0px; margin: 0; padding: 0;"></div>
+                    <td>
+                        Сумма кредита (р.):
                     </td>
-                </tr>               
+                    <td>
+                        <input id="amount" ng-model="amount" ng-change="clear()" type="number" value="10000" min="1">
+                    </td>
+                </tr>
                 <tr>
                     <td>Срок кредита (лет):</td>
                     <td><input type="number" id="years" ng-model="years" value="2" ng-change="clear()" min="1"></td>
                 </tr>
                 <tr>
-                    <td>Годовая ставка по кредиту (%):</td>
+                    <td>Процентная ставка (годовых)%:</td>
                     <td><input type="number" id="apr" ng-model="apr" min="0" value="10" ng-change="clear()"></td>
                 </tr>
                 <tr>
-                    <td>Ежемесячные комиссии (₽):</td>
+                    <td>Ежемесячные комиссии (р.):</td>
                     <td><input type="number" id="commis" ng-model="commis" ng-change="clear()" value="0" min="0"></td>
                 <tr>
                     <td>Тип платежей:</td>
                     <td>
                         <label class="radio-inline">
-                            <input type="radio" name="typepayment" ng-model="payment.type" value="Annu" ng-change="calculateByMonth()">Аннуитетные<br /> <i>(равные выплаты)</i>
+                            <input type="radio" name="typepayment" ng-model="payment.type" value="Annu" ng-change="calculateByMonth()">Аннуитетные<br /> <i>(равные выплаты)</i><br />
                         </label>
                     </td>
                 <tr>
-                    <td></td>
+                    <td><button class="btn-success" ng-click="calculateByMonth();">Расчитать</button></td>
                     <td>
                         <label class="radio-inline" style="align-content:flex-start">
-                            <input type="radio" name="typepayment" ng-model="payment.type" value="Diff" ng-change="calculateByMonth()">Дифференцированные<br /> <i>(платежи уменьшаются)</i>
+                            <input type="radio" name="typepayment" ng-model="payment.type" value="Diff" ng-change="calculateByMonth()">Дифференцированные<br /> <i>(платежи уменьшаются)</i><br />
                         </label>
                     </td>
-                <tr style="font-size:larger">
-                    <th>Платежи:</th>
-                    <td><button class="btn-success" ng-click="calculateByMonth();">Расчитать</button></td> <!--onclick="calculate();"-->
-                </tr>
-                <tr>
-                    <td>{{paymentMonth}}</td>
-                    <td><span class="output" id="payment">{{monthly}}</span></td>
-                    <td rowspan=3>
-                        <div id="diagram"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Итого проценты {{fee}}:</td>
-                    <td><span class="output" id="totalinterest">{{percent}}</span></td>                    
-                </tr>
-                <tr style="font-size:large">
-                    <td>Итого {{count}} платежей:</td>
-                    <td><span class="output" id="total">{{total}}</span></td>
                 </tr>
             </table>
         </div>
-        <div class="panel">
-            <button print-btn style="align-content:flex-end" class="btn-danger">Печать</button>
+
+        <div class="panel" ng-show="result">
+            <table class="table table-hover">
+                <tr>
+                    <th><h4>Платежи:</h4></th>
+                    <th><h5>Кредит {{amountText}}р. на {{years}} лет под {{apr}}%</h5></th>
+                    <th><h5><span ng-show="commisShow">(ежемесячные комиссии {{commis}}р.)</span></h5></th>
+                </tr>
+                <tr>
+                    <td>{{paymentMonth}}</td>
+                    <td><span class="output" id="payment">{{monthly}}р.</span></td>
+                    <td rowspan=7><div id="diagram"></div></td>
+                </tr>
+                <tr ng-show="lasttr">
+                    <td>{{lastMonth}}</td>
+                    <td><span class="output" id="payment">{{lastmonthly}}р.</span></td>
+                </tr>
+                <tr>
+                    <td>Итого проценты:</td>
+                    <td><span class="output" id="totalinterest">{{percent}}р.</span> </td>
+                </tr>
+                <tr>
+                    <td>Итого комиссии:</td>
+                    <td><span class="output" id="totalfee">{{fee}}р.</span> </td>
+                </tr>
+                <tr>
+                    <td>Итого проценты + комиссии:</td>
+                    <td><span class="output" id="totalfeepercent">{{feepercent}}р.</span></td>
+                </tr>
+                <tr>
+                    <td style="font-size:large">Итого {{count}} платежей:</td>
+                    <td style="font-size:large"><span class="output" id="total">{{total}}р.</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <div ng-show="result" class="panel">            
             <div>
-                <h3>Кредит {{amountText}}₽ на {{years}} года под {{apr}}% <span ng-show="commisShow">(ежемесячные комиссии {{commis}}₽)</span></h3>
                 <table class="table table-hover">
                     <thead>
                         <tr class="well">

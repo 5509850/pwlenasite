@@ -67,20 +67,21 @@ function CourceList($scope) {
         $scope.monthly = '';
         $scope.percent = '';
         $scope.total = '';
-        $scope.count = '';
-        $scope.coin = false;
-        //$scope.evenTotal = false;
-        //$scope.evenPrincipal = false;
-        document.getElementById("diagram").innerHTML = "";
-        document.getElementById("graph").innerHTML = "";                
-        document.getElementById("graph").setAttribute("style", "display:block;width:540px;height:0");
-        $scope.fee = '';       
+        $scope.count = '';      
+        $scope.fee = 0;
+        $scope.lastMonth = '';
+        $scope.lastmonthly = '';
+        $scope.result = false;
+        $scope.logo = false;
     }
 
     //обработчик нажатия по кнопке "Расчитать"  
     $scope.calculateByMonth = function () {
+        $scope.result = true;
+        $scope.logo = true;
         var setGraph = [['1996', 300, 162, 242]];
         var an = 0;
+        var fee = 0;
         if ($scope.payment.type == 'Annu') {
             an = 1;
         }
@@ -89,10 +90,14 @@ function CourceList($scope) {
         $scope.data.payments.length = 0; // clear array
         setGraph.length = 0;// clear array
         $scope.count = $scope.years * 12;
-        if ($scope.commis > 0)
-        {
-            $scope.fee = '+ Maintenance Fee';
+        fee = $scope.years * 12 * $scope.commis;
+        if ($scope.commis > 0) {
+            $scope.fee = fee.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');;
         }
+        else {
+            $scope.fee = 0;
+        }
+       
 
         if ($scope.payment.type == 'Annu') { //Аннуитетные-------------------------      
             var interest = parseFloat($scope.apr / 100);
@@ -100,10 +105,9 @@ function CourceList($scope) {
             var mainTotal = 0;
             var monthlyTotal = 0;
             $scope.paymentMonth = 'Monthly payments:';
-
-            $scope.coin = true;
-            //$scope.evenTotal = true;
-            //$scope.evenPrincipal = false;
+            $scope.lastMonth = '';
+            $scope.lastmonthly = '';
+            $scope.lasttr = false;        
 
             var amountRest = $scope.amount; //остаток основного долга
             var percent = parseFloat(amountRest * interest / 12);
@@ -133,8 +137,9 @@ function CourceList($scope) {
                 setGraph.push([
                     i + '',
                     monthly,
-                    percent + $scope.commis,
-                    mainloan]);
+                    mainloan,
+                    percent + $scope.commis
+                    ]);
 
                 amountRest -= mainloan;
                 mainTotal += mainloan;
@@ -156,9 +161,10 @@ function CourceList($scope) {
                 font: 'large'
             });
             $scope.total = monthlyTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-            $scope.percent = percTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');                    
+            $scope.percent = (percTotal - fee).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+            $scope.feepercent = percTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
           
-            diagram(percTotal, $scope.amount, $scope.commis * $scope.years * 12, $scope.paymentMonth + ' $' + monthly.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));         
+            diagram(percTotal, $scope.amount, $scope.commis * $scope.years * 12, 'Total payments: $' + $scope.total);
             var titlegraph = 'Even Total Payment Schedule';   
             graph(setGraph, titlegraph);
         }
@@ -166,21 +172,18 @@ function CourceList($scope) {
             var interest = parseFloat($scope.apr / 100);
             var percTotal = 0;
             var mainTotal = 0;
-            var monthlyTotal = 0;
-
-            $scope.coin = true;
-            //$scope.evenTotal = false;
-            //$scope.evenPrincipal = true;
-
+            var monthlyTotal = 0;           
+            $scope.lasttr = true;
             $scope.paymentMonth = 'Payment in first month:';
+            $scope.lastMonth = 'Payment in last month:';
 
             var amountRest = $scope.amount; //остаток основного долга            
             var mainloan = parseFloat($scope.amount / ($scope.years * 12)); //fixed
             var percent = parseFloat(amountRest * interest / 12);
             var monthly = mainloan + percent + $scope.commis;
+            var lastm = 0;
 
-            $scope.monthly = monthly.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-            var monthfordiagram = $scope.paymentMonth + ' $' + monthly.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');            
+            $scope.monthly = monthly.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');            
 
             for (i = 1; i < ($scope.years * 12) + 1; i++) {
                 var mystyle = 'success';
@@ -204,16 +207,17 @@ function CourceList($scope) {
                 setGraph.push([
                    i + '',
                    monthly,
-                   percent + $scope.commis,
-                   mainloan]);
+                   mainloan,
+                   percent + $scope.commis]);
                 amountRest -= mainloan;
                 mainTotal += mainloan;
                 percTotal += percent + $scope.commis;
                 monthlyTotal += monthly;
-
+                lastm = monthly;
                 percent = parseFloat(($scope.amount - (i * ($scope.amount / ($scope.years * 12)))) * (interest / 12));
                 monthly = mainloan + percent + $scope.commis;
             }
+            $scope.lastmonthly = lastm.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
             //Итого:
             $scope.data.payments.push({
                 month: "Total:",
@@ -226,9 +230,10 @@ function CourceList($scope) {
                 font: 'large'
             });
             $scope.total = monthlyTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-            $scope.percent = percTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');            
+            $scope.percent = (percTotal - fee).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+            $scope.feepercent = percTotal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
                     
-            diagram(percTotal, $scope.amount, $scope.commis * $scope.years * 12, monthfordiagram);            
+            diagram(percTotal, $scope.amount, $scope.commis * $scope.years * 12, 'Total payments: $' + $scope.total);
             var titlegraph = 'Even Principal Payment Schedule';     
             graph(setGraph, titlegraph);
         }
@@ -283,14 +288,14 @@ function diagram(percTotal, amount, fee, title) {
 
     chart.legend().position('right');
     chart.legend().itemsLayout('vertical');
-    chart.legend().align('center');
+    chart.legend().align('right');
     //set chart radius
-    chart.radius('110%');
+    chart.radius('100%');
 
     // create empty area in pie chart
     chart.innerRadius('30%');
 
-    chart.labels().position('outside');
+    //chart.labels().position('outside');
 
     // initiate chart drawing
     chart.draw();
@@ -299,83 +304,65 @@ function diagram(percTotal, amount, fee, title) {
 function graph(set, title) {
     var gr = document.getElementById("graph");
     gr.innerHTML = "";
-    gr.setAttribute("style", "display:block;width:540px;height:374px");    
+    gr.setAttribute("style", "display:block;height:400px");    
     var dataSet = anychart.data.set(set);
 
-    // map data for the first series, take x from the zero area and value from the first area of data set
+    //--------------------------------------------
+    // map data for the first series, take x from the zero column and value from the first column of data set
     var seriesData_1 = dataSet.mapAs({ x: [0], value: [1] });
 
-    // map data for the second series, take x from the zero area and value from the second area of data set
-    var seriesData_2 = dataSet.mapAs({ x: [0], value: [3] });
+    // map data for the second series, take x from the zero column and value from the second column of data set
+    var seriesData_2 = dataSet.mapAs({ x: [0], value: [2] });
 
-    // map data for the third series, take x from the zero area and value from the third area of data set
-    var seriesData_3 = dataSet.mapAs({ x: [0], value: [2] });
+    // map data for the third series, take x from the zero column and value from the third column of data set
+    var seriesData_3 = dataSet.mapAs({ x: [0], value: [3] });
 
-    // create area chart
-    chart = anychart.area3d();
-
-    // set container id for the chart
-    chart.container('graph');
+    // create line chart
+    chart = anychart.line();
 
     // turn on chart animation
     chart.animation(true);
 
-    // turn off the crosshair
-    chart.crosshair(true);
+    // turn on the crosshair
+    chart.crosshair().enabled(true).yLabel().enabled(false);
+    chart.crosshair().yStroke(null);
+
+    // set tooltip mode to point
+    chart.tooltip().positionMode('point');
 
     // set chart title text settings
     chart.title(title);
     chart.title().padding([0, 0, 5, 0]);
 
-    // set interactivity and tooltips settings
-    chart.interactivity().hoverMode('byX');
-    chart.tooltip().displayMode('union');
-
-
+    // set yAxis title
     chart.yAxis().title('Payments in Dollars');
-    chart.yAxis().labels().textFormatter(function () {
-        if (this.value == 0) return this.value;
-        return '$' + this.value;
-    });
-
-    // create zero line
-    var zeroLine = chart.lineMarker(0);
-    zeroLine.stroke("#ddd");
-    zeroLine.scale(chart.yScale());
-    zeroLine.value(0);
-
-    // helper function to setup label settings for all series
-    var setupSeries = function (series, name) {
-        series.name(name);
-        series.markers(false);
-        series.hoverMarkers(false);
-    };
-
-    // temp variable to store series instance
-    var series;
+    chart.xAxis().labels().padding([5]);
 
     // create first series with mapped data
-    series = chart.area(seriesData_1);
-    setupSeries(series, 'Payment =');
+    var series_1 = chart.line(seriesData_1);
+    series_1.name('Payment =');
+    series_1.hoverMarkers().enabled(true).type('circle').size(4);
+    series_1.tooltip().position('right').anchor('left').offsetX(5).offsetY(5);
 
     // create second series with mapped data
-    series = chart.area(seriesData_2);
-    setupSeries(series, 'Principal +');
+    var series_2 = chart.line(seriesData_2);
+    series_2.name('Principal +');
+    series_2.hoverMarkers().enabled(true).type('circle').size(4);
+    series_2.tooltip().position('right').anchor('left').offsetX(5).offsetY(5);
 
     // create third series with mapped data
-    series = chart.area(seriesData_3);
-    setupSeries(series, 'Interest');
+    var series_3 = chart.line(seriesData_3);
+    series_3.name('Interest');
+    series_3.hoverMarkers().enabled(true).type('circle').size(4);
+    series_3.tooltip().position('right').anchor('left').offsetX(5).offsetY(5);
 
-    // turn on legend
-    chart.legend().enabled(true).fontSize(13).padding([0, 0, 20, 0]);
+    // turn the legend on
+    chart.legend().enabled(true).fontSize(13).padding([0, 0, 10, 0]);
 
-    chart.grid();
-    chart.grid(1).layout('vertical');
-
-    chart.zAspect('90%');
-    chart.zPadding(10);
-    chart.zAngle(75);
+    // set container id for the chart and set up paddings
+    chart.container('graph');
+    chart.padding([10, 20, 5, 20]);
 
     // initiate chart drawing
-    chart.draw();
+    chart.draw();  
 }
