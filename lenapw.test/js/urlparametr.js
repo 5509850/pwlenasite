@@ -68,26 +68,20 @@ function mydiagram() {
     if (getAllUrlParams().per == undefined) {
         return;
     }
-    var percTotal = parseInt(getAllUrlParams().per);
+    var perc = parseInt(getAllUrlParams().per);
     if (getAllUrlParams().pri == undefined || getAllUrlParams().fee == undefined) {
         return;
     }
     var amount = parseInt(getAllUrlParams().pri);
     var fee = parseInt(getAllUrlParams().fee);
-    var total = amount + percTotal + fee;
-    var title = '';    
+    var total = amount + perc + fee;
+    var title = '';        
     
+    title = 'Total payments: $' + total.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
     
-        title = 'Total payments: $' + total;    
-    
-    //'100.00';
-    // diagram(percTotal, $scope.amount, $scope.commis * $scope.years * 12, monthfordiagram);
-    //  diagram(percTotal, $scope.amount, $scope.commis * $scope.years * 12, $scope.paymentMonth + ' $' + monthly.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
-    //''  '';
-    //   percTotal += percent + $scope.commis;
     document.getElementById("diagram").innerHTML = "";
     amount = Math.round(amount);
-    var perc = Math.round(percTotal - fee);
+    
     fee = Math.round(fee)
     if (fee == 0) {
         chart = anychart.pie3d([
@@ -110,8 +104,8 @@ function mydiagram() {
     // set chart title text settings
     chart.title(title);
 
-    chart.legend().position('right');
-    chart.legend().itemsLayout('vertical');
+    chart.legend().position('bottom');
+    chart.legend().itemsLayout('horizontal');
     chart.legend().align('center');
     //set chart radius
     chart.radius('60%');
@@ -119,7 +113,7 @@ function mydiagram() {
     // create empty area in pie chart
     chart.innerRadius('40%');
 
-    chart.labels().position('outside');
+   // chart.labels().position('outside');
 
     // initiate chart drawing
     chart.draw();
@@ -138,7 +132,7 @@ function mychart()
     var amount = parseInt(getAllUrlParams().a);
     var years = parseInt(getAllUrlParams().y);
     var month = years * 12;
-    var interest = parseInt(getAllUrlParams().i);
+    var interest = parseInt(getAllUrlParams().i) / 100;
     var percent = parseFloat(amount * interest / 12);
     var fee = parseInt(getAllUrlParams().f);
     var t = getAllUrlParams().t;
@@ -151,6 +145,7 @@ function mychart()
         var monthly = (amount * (interest / 12)) / (1 - (1 / Math.pow(1 + (interest / 12), (years * 12)))) + fee; // fixed        
         var mainloan = monthly - percent - fee;
         var amountRest = amount;
+        title = 'Even Principal Payment Schedule';
         for (i = 1; i < month + 1; i++) {                      
             setGraph.push([
                 i + '',
@@ -165,10 +160,12 @@ function mychart()
         }
     }
     else { //diff
-        var inter = parseFloat(interest / 100);
+
+        var amountRest = amount; //остаток основного долга            
         var mainloan = parseFloat(amount / (years * 12)); //fixed
-        var percent = parseFloat(amount * inter / 12);
+        var percent = parseFloat(amountRest * interest / 12);
         var monthly = mainloan + percent + fee;
+        title = 'Even Total Payment Schedule';
 
         for (i = 1; i < month + 1; i++) {
             
@@ -176,8 +173,10 @@ function mychart()
                i + '',
                monthly,
                mainloan,
-               percent + fee]);
-                     
+               percent + fee]);                     
+          
+            amountRest -= mainloan;                                   
+            lastm = monthly;
             percent = parseFloat((amount - (i * (amount / (years * 12)))) * (interest / 12));
             monthly = mainloan + percent + fee;
         }        

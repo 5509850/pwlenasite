@@ -123,9 +123,9 @@ namespace pwserver_bot
                             await Task.Delay(1000); // simulate longer running task                            
                             SendMessage(chatid, string.Format(@"{0} Loan, {1} Years Term, {2}% Annual Interest", 10000.ToString("C2"), 20, 7));
                             await Task.Delay(1000); // simulate longer running task                            
-                            SendMessage(chatid, GetResultLoanEvenPrincipalPayments(10000, 20, 7, 0));
+                            SendMessage(chatid, GetResultLoanEvenPrincipalPayments(10000, 20, 7, 0, true));
                             await Task.Delay(1000); // simulate longer running task             
-                            SendMessage(chatid, GetResultLoanEvenTotalPayments(10000, 20, 7, 0));
+                            SendMessage(chatid, GetResultLoanEvenTotalPayments(10000, 20, 7, 0, true));
                             break;
                         }
                     case "/stop":
@@ -165,9 +165,9 @@ namespace pwserver_bot
                                     SendMessage(chatid, string.Format(@"{0} Loan, {1} years term, {2}% - annual interest", a.ToString("C2"), y, p));
                                 }
                                 await Task.Delay(1000); // simulate longer running task                            
-                                SendMessage(chatid, GetResultLoanEvenPrincipalPayments(a, y, p, c));
+                                SendMessage(chatid, GetResultLoanEvenPrincipalPayments(a, y, p, c, false));
                                 await Task.Delay(1000); // simulate longer running task             
-                                SendMessage(chatid, GetResultLoanEvenTotalPayments(a, y, p, c));
+                                SendMessage(chatid, GetResultLoanEvenTotalPayments(a, y, p, c, false));
 
                             }
                             else
@@ -204,7 +204,7 @@ help - Displays a Help
 
         }
 
-        private static string GetResultLoanEvenTotalPayments(int loan, double year, double interestpercent, double commis)
+        private static string GetResultLoanEvenTotalPayments(int loan, double year, double interestpercent, double commis, bool demo)
         {
             var interest = interestpercent / 100;
             var monthly = (loan * (interest / 12)) / (1 - (1 / Math.Pow(1 + (interest / 12), (year * 12)))) + commis; // fixed
@@ -223,10 +223,28 @@ Total interest          {3}
 ---------------------------
 Principal              {4}%
 Interest               {5}%
-https://lena.pw/img/f2.png", monthlyText, year * 12, totalText, percentText, principalTotal.ToString("F1"), InterestTotal.ToString("F1"));
+{6}", monthlyText, year * 12, totalText, percentText, principalTotal.ToString("F1"), InterestTotal.ToString("F1"), geturl("a", demo, (int)InterestTotal, (int)principalTotal, 0, loan, (int)year, interestpercent, commis)); //
         }
 
-        private static string GetResultLoanEvenPrincipalPayments(int loan, double year, double interestpercent, double commis)
+        private static string geturl(string type, bool demo, int per, int pri, int fee, int a, int y, double i, double f)
+        {
+            if (demo)
+            {
+                if (type.Equals("a"))
+                {
+                    return "https://lena.pw/img/f2.png";
+                }
+                else
+                {
+                    return "https://lena.pw/img/f1.png";
+                }
+            }
+            return string.Format(@"https://lena.pw/chart.html?a={0}&y={1}&i={2}&f={3}&t={4}
+                https://lena.pw/diagram.html?per={5}&pri={6}&fee={7}", a, y, i, f, type, per, pri, fee);
+            
+        }
+
+        private static string GetResultLoanEvenPrincipalPayments(int loan, double year, double interestpercent, double commis, bool demo)
         {
             var interest = interestpercent / 100;
             double percTotal = 0;
@@ -237,6 +255,7 @@ https://lena.pw/img/f2.png", monthlyText, year * 12, totalText, percentText, pri
             var percent = (amountRest * interest / 12);
             var monthly = mainloan + percent + commis;
             string monthlyFirstText = monthly.ToString("C2");
+            double lastmonth = 0;
 
             for (int i = 1; i < (year * 12) + 1; i++)
             {
@@ -244,6 +263,7 @@ https://lena.pw/img/f2.png", monthlyText, year * 12, totalText, percentText, pri
                 percTotal += percent + commis;
                 monthlyTotal += monthly;
                 percent = (loan - (i * (loan / (year * 12)))) * (interest / 12);
+                lastmonth = monthly;
                 monthly = mainloan + percent + commis;
             }
 
@@ -252,7 +272,7 @@ https://lena.pw/img/f2.png", monthlyText, year * 12, totalText, percentText, pri
 
             string monthlyTotalText = monthlyTotal.ToString("C2");
             string percTotallText = percTotal.ToString("C2");
-            string monthlyLastText = monthly.ToString("C2");
+            string monthlyLastText = lastmonth.ToString("C2");
 
             return string.Format(@"1)Even Principal Payments
 Results:
@@ -263,7 +283,7 @@ Total interest	       {4}
 ---------------------------
 Principal              {5}%
 Interest               {6}%
-https://lena.pw/img/f1.png", monthlyFirstText, monthlyLastText, year * 12, monthlyTotalText, percTotallText, principalTotal.ToString("F1"), InterestTotal.ToString("F1"));
+{7}", monthlyFirstText, monthlyLastText, year * 12, monthlyTotalText, percTotallText, principalTotal.ToString("F1"), InterestTotal.ToString("F1"), geturl("b", demo, (int)InterestTotal, (int)principalTotal, 0, loan, (int)year, interestpercent, commis));
         }
 
         private static async void SendMessage(Message incomingMessage, string messageForSend)
