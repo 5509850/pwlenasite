@@ -11,46 +11,46 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/lenapw.test.dll">
-      <publishTime>12/15/2016 16:26:21</publishTime>
+      <publishTime>12/19/2016 18:59:29</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>11/30/2016 16:07:42</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.DependencyCollector.dll">
-      <publishTime>12/07/2016 11:45:42</publishTime>
+      <publishTime>07/12/2016 11:45:42</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
-      <publishTime>12/07/2016 11:50:34</publishTime>
+      <publishTime>07/12/2016 11:50:34</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
-      <publishTime>12/06/2016 15:15:48</publishTime>
+      <publishTime>06/12/2016 15:15:48</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Web.dll">
-      <publishTime>12/07/2016 11:49:10</publishTime>
+      <publishTime>07/12/2016 11:49:10</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.WindowsServer.dll">
-      <publishTime>12/07/2016 11:50:34</publishTime>
+      <publishTime>07/12/2016 11:50:34</publishTime>
     </File>
     <File Include="bin/Microsoft.ApplicationInsights.dll">
-      <publishTime>12/06/2016 15:09:52</publishTime>
+      <publishTime>06/12/2016 15:09:52</publishTime>
     </File>
     <File Include="bin/Microsoft.Diagnostics.Tracing.EventSource.dll">
-      <publishTime>12/01/2015 14:31:46</publishTime>
+      <publishTime>01/12/2015 14:31:46</publishTime>
     </File>
     <File Include="bin/Microsoft.Threading.Tasks.dll">
-      <publishTime>02/05/2016 15:53:19</publishTime>
+      <publishTime>05/02/2016 15:53:19</publishTime>
     </File>
     <File Include="bin/Microsoft.Threading.Tasks.Extensions.Desktop.dll">
-      <publishTime>02/05/2016 15:53:19</publishTime>
+      <publishTime>05/02/2016 15:53:19</publishTime>
     </File>
     <File Include="bin/Microsoft.Threading.Tasks.Extensions.dll">
-      <publishTime>02/05/2016 15:53:19</publishTime>
+      <publishTime>05/02/2016 15:53:19</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>02/25/2016 11:12:33</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>07/04/2016 13:31:52</publishTime>
+      <publishTime>04/07/2016 13:31:52</publishTime>
     </File>
     <File Include="bin/System.IO.dll">
       <publishTime>02/18/2015 17:07:08</publishTime>
@@ -101,7 +101,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/15/2016 16:15:46</publishTime>
     </File>
     <File Include="chart.html">
-      <publishTime>12/14/2016 18:00:08</publishTime>
+      <publishTime>12/19/2016 12:34:10</publishTime>
     </File>
     <File Include="css/angularPrint.css">
       <publishTime>12/12/2016 11:14:32</publishTime>
@@ -122,7 +122,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/12/2016 11:14:32</publishTime>
     </File>
     <File Include="diagram.html">
-      <publishTime>12/14/2016 19:08:37</publishTime>
+      <publishTime>12/16/2016 13:14:38</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>12/12/2016 11:14:32</publishTime>
@@ -131,7 +131,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/08/2016 13:25:15</publishTime>
     </File>
     <File Include="img/back.png">
-      <publishTime>09/12/2016 10:51:06</publishTime>
+      <publishTime>12/09/2016 10:51:06</publishTime>
     </File>
     <File Include="img/c.jpg">
       <publishTime>12/15/2016 14:21:22</publishTime>
@@ -185,7 +185,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/12/2016 11:14:32</publishTime>
     </File>
     <File Include="js/urlparametr.js">
-      <publishTime>12/14/2016 19:14:16</publishTime>
+      <publishTime>12/19/2016 14:52:46</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>12/12/2016 11:14:32</publishTime>
