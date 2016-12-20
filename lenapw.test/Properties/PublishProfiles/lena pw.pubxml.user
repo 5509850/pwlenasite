@@ -11,46 +11,46 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/lenapw.test.dll">
-      <publishTime>12/19/2016 18:59:29</publishTime>
+      <publishTime>12/20/2016 12:56:15</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>11/30/2016 16:07:42</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.DependencyCollector.dll">
-      <publishTime>07/12/2016 11:45:42</publishTime>
+      <publishTime>12/07/2016 11:45:42</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
-      <publishTime>07/12/2016 11:50:34</publishTime>
+      <publishTime>12/07/2016 11:50:34</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
-      <publishTime>06/12/2016 15:15:48</publishTime>
+      <publishTime>12/06/2016 15:15:48</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Web.dll">
-      <publishTime>07/12/2016 11:49:10</publishTime>
+      <publishTime>12/07/2016 11:49:10</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.WindowsServer.dll">
-      <publishTime>07/12/2016 11:50:34</publishTime>
+      <publishTime>12/07/2016 11:50:34</publishTime>
     </File>
     <File Include="bin/Microsoft.ApplicationInsights.dll">
-      <publishTime>06/12/2016 15:09:52</publishTime>
+      <publishTime>12/06/2016 15:09:52</publishTime>
     </File>
     <File Include="bin/Microsoft.Diagnostics.Tracing.EventSource.dll">
-      <publishTime>01/12/2015 14:31:46</publishTime>
+      <publishTime>12/01/2015 14:31:46</publishTime>
     </File>
     <File Include="bin/Microsoft.Threading.Tasks.dll">
-      <publishTime>05/02/2016 15:53:19</publishTime>
+      <publishTime>02/05/2016 15:53:19</publishTime>
     </File>
     <File Include="bin/Microsoft.Threading.Tasks.Extensions.Desktop.dll">
-      <publishTime>05/02/2016 15:53:19</publishTime>
+      <publishTime>02/05/2016 15:53:19</publishTime>
     </File>
     <File Include="bin/Microsoft.Threading.Tasks.Extensions.dll">
-      <publishTime>05/02/2016 15:53:19</publishTime>
+      <publishTime>02/05/2016 15:53:19</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>02/25/2016 11:12:33</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>04/07/2016 13:31:52</publishTime>
+      <publishTime>07/04/2016 13:31:52</publishTime>
     </File>
     <File Include="bin/System.IO.dll">
       <publishTime>02/18/2015 17:07:08</publishTime>
@@ -131,7 +131,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/08/2016 13:25:15</publishTime>
     </File>
     <File Include="img/back.png">
-      <publishTime>12/09/2016 10:51:06</publishTime>
+      <publishTime>09/12/2016 10:51:06</publishTime>
     </File>
     <File Include="img/c.jpg">
       <publishTime>12/15/2016 14:21:22</publishTime>

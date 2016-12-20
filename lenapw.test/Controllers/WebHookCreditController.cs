@@ -21,7 +21,7 @@ namespace lenapw.test.Controllers
 
         static class Bot
         {
-            public static readonly TelegramBotClient Api = new TelegramBotClient("<Your bot Token>");            
+            public static readonly TelegramBotClient Api = new TelegramBotClient("<Bot Token>");            
         }
 
 
@@ -32,6 +32,15 @@ namespace lenapw.test.Controllers
 <Loan term - years> 
 <Annual Interest Rate - %> 
 <Monthly Maintenance Fee - $> (optional)";
+
+        private readonly string exampleInline = @"example of use case: 
+@LoanCalculatorBot 1000 20 5
+-------------------------
+<Loan Amount - $> 
+<Loan term - years> 
+<Annual Interest Rate - %> 
+<Monthly Maintenance Fee - $> (optional)";
+        
 
         private readonly string exampleShort = @"example of use case: 
 1000 20 5";
@@ -82,8 +91,47 @@ namespace lenapw.test.Controllers
         public async Task<IHttpActionResult> Post(Update update)
         {           
             var msg = update.Message;
+            if (msg == null)
+            {
+                //--------------------------------------------------------------------------Inline mode
+                if (update.Type == UpdateType.InlineQueryUpdate)
+                {
+                    InlineQueryResult[] results = {
+                new InlineQueryResultArticle
+                {
+                    Id= "1",
+                    Title = "1) Even Principal Payments",
+                    InputMessageContent = new InputTextMessageContent {
+                        DisableWebPagePreview = true,
+                        MessageText = GetInlinePrincipal(update.InlineQuery.Query)
+                    },
+                    Description = GetDescriptionInputData(update.InlineQuery.Query)
+
+                },
+                 new InlineQueryResultArticle
+                {
+                    Id= "2",
+                    Title = "2) Even Total Payments",
+                    InputMessageContent = new InputTextMessageContent {
+                        DisableWebPagePreview = true,
+                        MessageText = GetInlineTotal(update.InlineQuery.Query)
+                    },
+                    Description = GetDescriptionInputData2(update.InlineQuery.Query)
+                }
+                 };
+                    try
+                    {
+                        await Bot.Api.AnswerInlineQueryAsync(update.InlineQuery.Id, results, isPersonal: true, cacheTime: 0);
+                    }
+                    catch (Exception ex)
+                    {
+                        var err = ex.Message;
+                    }
+                }
+            }
             if (msg == null || msg.Text == null) return Ok();
             long chatid = msg.Chat.Id;
+            //Message recive
             if (msg.Type == MessageType.TextMessage)
             {
                 switch (msg.Text)
@@ -160,42 +208,6 @@ namespace lenapw.test.Controllers
                         }
                 }               
             }
-            //--------------------------------------------------------------------------Inline mode
-            if (update.Type == UpdateType.InlineQueryUpdate) 
-            {
-                InlineQueryResult[] results = {
-                new InlineQueryResultArticle
-                {
-                    Id= "1",
-                    Title = "1) Even Principal Payments",
-                    InputMessageContent = new InputTextMessageContent {
-                        DisableWebPagePreview = true,
-                        MessageText = GetInlinePrincipal(update.InlineQuery.Query)
-                    },
-                    Description = GetDescriptionInputData(update.InlineQuery.Query)
-
-                },
-                 new InlineQueryResultArticle
-                {
-                    Id= "2",
-                    Title = "2) Even Total Payments",
-                    InputMessageContent = new InputTextMessageContent {
-                        DisableWebPagePreview = true,
-                        MessageText = GetInlineTotal(update.InlineQuery.Query)
-                    },
-                    Description = GetDescriptionInputData2(update.InlineQuery.Query)
-                }
-                 };
-                try
-                {
-                    await Bot.Api.AnswerInlineQueryAsync(update.InlineQuery.Id, results, isPersonal: true, cacheTime: 0);
-                }
-                catch (Exception ex)
-                {
-                    var err = ex.Message;
-                }
-            }
-
             return Ok();
         }
 
@@ -350,7 +362,7 @@ geturl("a", demo, (int)(((monthly * year * 12) - loan - (commis * year * 12))), 
             {
                 if (string.IsNullOrEmpty(msg))
                 {
-                    return example;
+                    return exampleInline;
 
                 }
                 string[] array = msg.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
@@ -376,7 +388,7 @@ geturl("a", demo, (int)(((monthly * year * 12) - loan - (commis * year * 12))), 
                     }
                     if (a == 0 || y == 0 || p == 0)
                     {
-                        return example;
+                        return exampleInline;
                     }
                     if (c != 0)
                     {
@@ -394,10 +406,10 @@ geturl("a", demo, (int)(((monthly * year * 12) - loan - (commis * year * 12))), 
             catch (Exception ex)
             {
                 var err = ex.Message;
-                return example;
+                return exampleInline;
             }
 
-            return example;
+            return exampleInline;
         }
 
         private string GetDescriptionInputData2(string msg)
@@ -544,7 +556,7 @@ geturl("a", demo, (int)(((monthly * year * 12) - loan - (commis * year * 12))), 
             {
                 if (string.IsNullOrEmpty(msg))
                 {
-                    return example;
+                    return exampleInline;
                 }
                 string[] array = msg.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
                 if ((array != null && array.Length == 3 || array.Length == 4) && IsArrayDigit(array))
@@ -569,7 +581,7 @@ geturl("a", demo, (int)(((monthly * year * 12) - loan - (commis * year * 12))), 
                     }
                     if (a == 0 || y == 0 || p == 0)
                     {
-                        return example;
+                        return exampleInline;
                     }
                     if (c != 0)
                     {
@@ -587,9 +599,9 @@ geturl("a", demo, (int)(((monthly * year * 12) - loan - (commis * year * 12))), 
             catch (Exception ex)
             {
                 var err = ex.Message;
-                return example;
+                return exampleInline;
             }
-            return example;
+            return exampleInline;
         }
 
 

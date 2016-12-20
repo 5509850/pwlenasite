@@ -14,7 +14,7 @@ namespace pwserver_bot
     //read me https://habrahabr.ru/post/316222/
     class Program
     {
-        private static string token = "<Your Bot Token>";
+        private static string token = "<Bot token>";
         private static readonly TelegramBotClient bot = new TelegramBotClient(token);
 
         private static readonly string example = @"example of use case: 
@@ -45,9 +45,45 @@ namespace pwserver_bot
             bot.StopReceiving();
         }
 
-        private static void Bot_OnUpdate(object sender, Telegram.Bot.Args.UpdateEventArgs e)
+        private async static void Bot_OnUpdate(object sender, Telegram.Bot.Args.UpdateEventArgs e)
         {
-            var ad = e.Update;
+            return;
+            //var ad = e.Update;
+            //if (ad.Type == UpdateType.InlineQueryUpdate)
+            //{
+            //    InlineQueryResult[] results = {
+            //    new InlineQueryResultArticle
+            //    {
+            //        Id= "1",
+            //        Title = "1) Even Principal Payments",
+            //        InputMessageContent = new InputTextMessageContent {
+            //            DisableWebPagePreview = true,
+            //            MessageText = GetInlinePrincipal(ad.InlineQuery.Query)
+            //        },
+            //        Description = GetDescriptionInputData(ad.InlineQuery.Query)
+
+            //    },
+            //     new InlineQueryResultArticle
+            //    {
+            //        Id= "2",
+            //        Title = "2) Even Total Payments",
+            //        InputMessageContent = new InputTextMessageContent {
+            //            DisableWebPagePreview = true,
+            //            MessageText = GetInlineTotal(ad.InlineQuery.Query)
+            //        },
+            //        Description = GetDescriptionInputData2(ad.InlineQuery.Query)
+            //    }
+            //     };
+            //    try
+            //    {
+            //        await bot.AnswerInlineQueryAsync(ad.InlineQuery.Id, results, isPersonal: true, cacheTime: 0);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        var err = ex.Message;
+            //    }
+            //}
+
         }
 
         private static async void Bot_OnMessage(object sender, Telegram.Bot.Args.MessageEventArgs e)
@@ -163,7 +199,6 @@ namespace pwserver_bot
 
         private static async void Bot_OnInlineQuery(object sender, Telegram.Bot.Args.InlineQueryEventArgs inlineQueryEventArgs)
         {           
-
             InlineQueryResult[] results = {
                 new InlineQueryResultArticle
                 {
@@ -185,32 +220,7 @@ namespace pwserver_bot
                         MessageText = GetInlineTotal(inlineQueryEventArgs.InlineQuery.Query)
                     },
                     Description = GetDescriptionInputData2(inlineQueryEventArgs.InlineQuery.Query)
-                }
-                //new InlineQueryResultLocation
-                //{
-                //    Id = "1",
-                //    Latitude = 40.7058316f, // displayed result
-                //    Longitude = -74.2581888f,
-                //    Title = inlineQueryEventArgs.InlineQuery.Query,
-                //    InputMessageContent = new InputLocationMessageContent // message if result is selected
-                //    {
-                //        Latitude = 40.7058316f,
-                //        Longitude = -74.2581888f,
-                //    }
-                //},
-
-                //new InlineQueryResultLocation
-                //{
-                //    Id = "2",
-                //    Longitude = 52.507629f, // displayed result
-                //    Latitude = 13.1449577f,
-                //    Title = "Berlin",
-                //    InputMessageContent = new InputLocationMessageContent // message if result is selected
-                //    {
-                //        Longitude = 52.507629f,
-                //        Latitude = 13.1449577f
-                //    }
-                //}
+                }               
             };
             try
             {
