@@ -2,29 +2,25 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Web.Http;
+using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
+using System.Web.Http;
+using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using System.Text.RegularExpressions;
-using System.Globalization;
-using Telegram.Bot;
 using Telegram.Bot.Types.InlineQueryResults;
 using Telegram.Bot.Types.InputMessageContents;
 
 namespace lenapw.test.Controllers
 {
-    public class WebHookCreditController : ApiController
+    public class WebHookPwController : ApiController
     {
-        #region var 
-
         static class Bot
         {
-            public static readonly TelegramBotClient Api = new TelegramBotClient("<Bot Token>");            
+            public static readonly TelegramBotClient Api = new TelegramBotClient("<Bot Token>");
         }
-
-
+        #region VARs
         private readonly string example = @"example of use case: 
 1000 20 5
 -------------------------
@@ -40,12 +36,12 @@ namespace lenapw.test.Controllers
 <Loan term - years> 
 <Annual Interest Rate - %> 
 <Monthly Maintenance Fee - $> (optional)";
-        
+
 
         private readonly string exampleShort = @"example of use case: 
 1000 20 5";
         private readonly string exampleShort2 = @"<Loan Amount><Loan term in years><Annual Interest Rate %><Monthly Maintenance Fee $> (optional)";
-        #endregion
+#endregion
 
         #region public methode
         public ICollection<Client> Get()
@@ -64,12 +60,9 @@ namespace lenapw.test.Controllers
 
         public ICollection<Client> Get(int id)
         {
-            //http://localhost:18442/api/webhookcredit/5
-            //http://localhost:18442/api/webhookcredit/get/5
-
             if (id == 555)
             {
-                Bot.Api.SetWebhookAsync("https://lena.pw/api/webhookcredit").Wait();
+                Bot.Api.SetWebhookAsync("https://lena.pw/api/webhookpw").Wait();
                 return new Collection<Client>
                        {
                             {
@@ -78,18 +71,18 @@ namespace lenapw.test.Controllers
                        };
             }
             else
-            {                
+            {
                 return new Collection<Client>
                        {
                             {
                                 new Client { Id = id, Title = "wrong" }
                             }
                        };
-            }   
+            }
         }
 
         public async Task<IHttpActionResult> Post(Update update)
-        {           
+        {
             var msg = update.Message;
             if (msg == null)
             {
@@ -144,15 +137,13 @@ namespace lenapw.test.Controllers
                     case "/example":
                         {
                             SendMessage(chatid, @"10000 20 7
-.........(you)");
-                            await Task.Delay(500); // simulate longer running task                            
-                            SendMessage(chatid, string.Format(@"{0} Loan, {1} Years Term, {2}% Annual Interest
-{3}", 10000.ToString("C2"), 20, 7, 
-GetResultLoanEvenPrincipalPayments(10000, 20, 7, 0, true)));
-                            await Task.Delay(500); // simulate longer running task                            
-                            SendMessage(chatid, string.Format(@"{0} Loan, {1} Years Term, {2}% Annual Interest
-{3}", 10000.ToString("C2"), 20, 7,
-GetResultLoanEvenTotalPayments(10000, 20, 7, 0, true)));
+............");
+                            await Task.Delay(1000); // simulate longer running task                            
+                            SendMessage(chatid, string.Format(@"{0} Loan, {1} Years Term, {2}% Annual Interest", 10000.ToString("C2"), 20, 7));
+                            await Task.Delay(1000); // simulate longer running task                            
+                            SendMessage(chatid, GetResultLoanEvenPrincipalPayments(10000, 20, 7, 0, true));
+                            await Task.Delay(1000); // simulate longer running task             
+                            SendMessage(chatid, GetResultLoanEvenTotalPayments(10000, 20, 7, 0, true));
                             break;
                         }
                     case "/stop":
@@ -208,7 +199,7 @@ GetResultLoanEvenTotalPayments(10000, 20, 7, 0, true)));
                             }
                             break;
                         }
-                }               
+                }
             }
             return Ok();
         }
@@ -222,11 +213,11 @@ GetResultLoanEvenTotalPayments(10000, 20, 7, 0, true)));
             {
                 if (incomingMessage.From.FirstName != null)
                 {
-                    Message x = await Bot.Api.SendTextMessageAsync(incomingMessage.Chat.Id, string.Format("{0}, {1} - click /example", messageForSend, incomingMessage.From.FirstName));                    
+                    Message x = await Bot.Api.SendTextMessageAsync(incomingMessage.Chat.Id, string.Format("{0}, {1}", messageForSend, incomingMessage.From.FirstName));
                 }
                 else
                 {
-                    Message x = await Bot.Api.SendTextMessageAsync(incomingMessage.Chat.Id, messageForSend + " - click /example");                    
+                    Message x = await Bot.Api.SendTextMessageAsync(incomingMessage.Chat.Id, messageForSend);
                 }
             }
             catch (Exception ex)
@@ -308,8 +299,7 @@ Total of {2} payments  {3}
 ---------------------------
 Principal              {5}%
 Interest               {6}%
-{7}
-", monthlyFirstText, monthlyLastText, year * 12, monthlyTotalText, percTotallText, principalTotal.ToString("F1"), InterestTotal.ToString("F1"),
+{7}", monthlyFirstText, monthlyLastText, year * 12, monthlyTotalText, percTotallText, principalTotal.ToString("F1"), InterestTotal.ToString("F1"),
 geturl("b", demo, (int)(percTotal - (commis * year * 12)), loan, (int)(commis * year * 12), loan, (int)year, interestpercent, commis));
         }
 

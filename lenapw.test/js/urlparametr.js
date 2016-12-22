@@ -145,7 +145,7 @@ function mychart()
         var monthly = (amount * (interest / 12)) / (1 - (1 / Math.pow(1 + (interest / 12), (years * 12)))) + fee; // fixed        
         var mainloan = monthly - percent - fee;
         var amountRest = amount;
-        title = 'Even Principal Payment Schedule';
+        title = 'Even Total Payment Schedule';
         for (i = 1; i < month + 1; i++) {                      
             setGraph.push([
                 i + '',
@@ -165,7 +165,7 @@ function mychart()
         var mainloan = parseFloat(amount / (years * 12)); //fixed
         var percent = parseFloat(amountRest * interest / 12);
         var monthly = mainloan + percent + fee;
-        title = 'Even Total Payment Schedule';
+        title = 'Even Principal Payment Schedule';
 
         for (i = 1; i < month + 1; i++) {
             
