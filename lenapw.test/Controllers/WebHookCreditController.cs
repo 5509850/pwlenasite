@@ -141,6 +141,14 @@ namespace lenapw.test.Controllers
                             SendMessage(msg, "Welcome to Loan Calculator");
                             break;
                         }
+
+                    case "/rate":
+                        {
+                            SendMessage(msg, "https://telegram.me/storebot?start=loancalculatorbot");
+                            break;
+                        }
+
+                        
                     case "/example":
                         {
                             SendMessage(chatid, @"10000 20 7

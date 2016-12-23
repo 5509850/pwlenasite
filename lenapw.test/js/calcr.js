@@ -346,13 +346,13 @@ function graph(set, title) {
 
     // create second series with mapped data
     var series_2 = chart.line(seriesData_2);
-    series_2.name('Основной долг +');
+    series_2.name('Основной долг');
     series_2.hoverMarkers().enabled(true).type('circle').size(4);
     series_2.tooltip().position('right').anchor('left').offsetX(5).offsetY(5);
 
     // create third series with mapped data
     var series_3 = chart.line(seriesData_3);
-    series_3.name('Проценты');
+    series_3.name('+ Проценты');
     series_3.hoverMarkers().enabled(true).type('circle').size(4);
     series_3.tooltip().position('right').anchor('left').offsetX(5).offsetY(5);
 

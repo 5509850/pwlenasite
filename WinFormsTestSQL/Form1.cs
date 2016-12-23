@@ -7,7 +7,7 @@ namespace WinFormsTestSQL
     public partial class Form1 : Form
     {
 
-        string connectionString = @"";
+        string connectionString = @"Data Source=10.143.25.93;Initial Catalog=alexandr_gorbunov_; Persist Security Info=True;User ID=sa;Password=a#40284028;";
         private MLDBUtils.SQLCom MyCom;
         private const int ANDROID_SLAVE = 1;
         public Form1()

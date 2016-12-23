@@ -34,8 +34,8 @@
                 Кредитный калькулятор
             </h1>
         </div>
-        <div align="right"><button print-btn style="align-content:flex-end;" class="btn-danger">Печать</button></div>
-        <div class="panel">
+        <div align="right"><button print-btn style="align-content:flex-end;" class="btn-danger">Печать</button></div>        
+        <div class="panel">           
             <table class="table table-hover">
                 <tr>
                     <th>
@@ -45,7 +45,13 @@
                     <td rowspan=7>
                         <img src="/img/c.jpg" ng-hide="logo" style="border:none; width: 100%;  height: auto;" />
                         <div ng-show="result" id="graph" style="margin: 0; padding: 0;"></div>
-                    </td>
+                        <div align="right">
+                            <a href="http://telegram.me/loancalculatorbot" target="_blank" title="@LoanCalulatorBot">
+                                Добавить в <img title="Telegram" src="img/t.png" />
+                            </a>
+                        </div>
+
+                    </td>     
                 </tr>
                 <tr>
                     <td>
@@ -82,8 +88,7 @@
                     </td>
                 </tr>
             </table>
-        </div>
-
+        </div>       
         <div class="panel" ng-show="result">
             <table class="table table-hover">
                 <tr>
