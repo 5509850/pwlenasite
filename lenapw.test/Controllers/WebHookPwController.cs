@@ -1,4 +1,4 @@
-п»їusing lenapw.test.Models;
+using lenapw.test.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,6 +16,8 @@ namespace lenapw.test.Controllers
 {
     public class WebHookPwController : ApiController
     {
+
+        string WEB_HOOK_URL = "<hook url>";
         static class Bot
         {
             public static readonly TelegramBotClient Api = new TelegramBotClient("<Bot Token>");
@@ -41,7 +43,7 @@ namespace lenapw.test.Controllers
         private readonly string exampleShort = @"example of use case: 
 1000 20 5";
         private readonly string exampleShort2 = @"<Loan Amount><Loan term in years><Annual Interest Rate %><Monthly Maintenance Fee $> (optional)";
-#endregion
+        #endregion
 
         #region public methode
         public ICollection<Client> Get()
@@ -62,7 +64,7 @@ namespace lenapw.test.Controllers
         {
             if (id == 555)
             {
-                Bot.Api.SetWebhookAsync("https://lena.pw/api/webhookpw").Wait();
+                Bot.Api.SetWebhookAsync(WEB_HOOK_URL).Wait();
                 return new Collection<Client>
                        {
                             {
@@ -266,7 +268,7 @@ namespace lenapw.test.Controllers
             double percTotal = 0;
             double monthlyTotal = 0;
 
-            double amountRest = loan; //РѕСЃС‚Р°С‚РѕРє РѕСЃРЅРѕРІРЅРѕРіРѕ РґРѕР»РіР°            
+            double amountRest = loan; //остаток основного долга            
             var mainloan = (loan / (year * 12)); //fixed
             var percent = (amountRest * interest / 12);
             var monthly = mainloan + percent + commis;

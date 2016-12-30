@@ -1,12 +1,10 @@
-﻿﻿using System;
+﻿using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using Telegram.Bot.Types.InlineQueryResults;
-using Telegram.Bot.Types.InputMessageContents;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace pwserver_bot
@@ -14,20 +12,20 @@ namespace pwserver_bot
     //read me https://habrahabr.ru/post/316222/
     class Program
     {
-        private static string token = "<Bot token>";
+        private static string token = "Bot Token";
         private static readonly TelegramBotClient bot = new TelegramBotClient(token);
 
-        private static readonly string example = @"example of use case: 
-1000 20 5
--------------------------
-<Loan Amount - $> 
-<Loan term - years> 
-<Annual Interest Rate - %> 
-<Monthly Maintenance Fee - $> (optional)";
+        private static readonly string example = "for test only";//;@"example of use case: 
+                                                                 //1000 20 5
+                                                                 //-------------------------
+                                                                 //<Loan Amount - $> 
+                                                                 //<Loan term - years> 
+                                                                 //<Annual Interest Rate - %> 
+                                                                 //<Monthly Maintenance Fee - $> (optional)";
 
-        private static readonly string exampleShort = @"example of use case: 
-1000 20 5";
-        private static readonly string exampleShort2 = @"<Loan Amount><Loan term in years><Annual Interest Rate %><Monthly Maintenance Fee $> (optional)";
+        private static readonly string exampleShort = @"example of use case:";
+        //1000 20 5";
+        private static readonly string exampleShort2 = @"";//<Loan Amount><Loan term in years><Annual Interest Rate %><Monthly Maintenance Fee $> (optional)";
 
         static void Main(string[] args)
         {
@@ -46,9 +44,11 @@ namespace pwserver_bot
         }
 
         private async static void Bot_OnUpdate(object sender, Telegram.Bot.Args.UpdateEventArgs e)
-        {
-            return;
-            //var ad = e.Update;
+        { 
+            var ad = e.Update;
+            var id = ad.Message.Chat.Id;
+            var chat = ad.Message.Chat;
+            var messa = ad.Message;
             //if (ad.Type == UpdateType.InlineQueryUpdate)
             //{
             //    InlineQueryResult[] results = {
@@ -199,37 +199,37 @@ namespace pwserver_bot
 
         private static async void Bot_OnInlineQuery(object sender, Telegram.Bot.Args.InlineQueryEventArgs inlineQueryEventArgs)
         {           
-            InlineQueryResult[] results = {
-                new InlineQueryResultArticle
-                {
-                    Id= "1",
-                    Title = "1) Even Principal Payments",
-                    InputMessageContent = new InputTextMessageContent {
-                        DisableWebPagePreview = true,
-                        MessageText = GetInlinePrincipal(inlineQueryEventArgs.InlineQuery.Query)
-                    },
-                    Description = GetDescriptionInputData(inlineQueryEventArgs.InlineQuery.Query)
+            //InlineQueryResult[] results = {
+            //    new InlineQueryResultArticle
+            //    {
+            //        Id= "1",
+            //        Title = "1) Even Principal Payments",
+            //        InputMessageContent = new InputTextMessageContent {
+            //            DisableWebPagePreview = true,
+            //            MessageText = GetInlinePrincipal(inlineQueryEventArgs.InlineQuery.Query)
+            //        },
+            //        Description = GetDescriptionInputData(inlineQueryEventArgs.InlineQuery.Query)
 
-                },
-                 new InlineQueryResultArticle
-                {
-                    Id= "2",
-                    Title = "2) Even Total Payments",
-                    InputMessageContent = new InputTextMessageContent {
-                        DisableWebPagePreview = true,
-                        MessageText = GetInlineTotal(inlineQueryEventArgs.InlineQuery.Query)
-                    },
-                    Description = GetDescriptionInputData2(inlineQueryEventArgs.InlineQuery.Query)
-                }               
-            };
-            try
-            {
-                await bot.AnswerInlineQueryAsync(inlineQueryEventArgs.InlineQuery.Id, results, isPersonal: true, cacheTime: 0);
-            }
-            catch (Exception ex)
-            {
-                var err = ex.Message;
-            }
+            //    },
+            //     new InlineQueryResultArticle
+            //    {
+            //        Id= "2",
+            //        Title = "2) Even Total Payments",
+            //        InputMessageContent = new InputTextMessageContent {
+            //            DisableWebPagePreview = true,
+            //            MessageText = GetInlineTotal(inlineQueryEventArgs.InlineQuery.Query)
+            //        },
+            //        Description = GetDescriptionInputData2(inlineQueryEventArgs.InlineQuery.Query)
+            //    }               
+            //};
+            //try
+            //{
+            //    await bot.AnswerInlineQueryAsync(inlineQueryEventArgs.InlineQuery.Id, results, isPersonal: true, cacheTime: 0);
+            //}
+            //catch (Exception ex)
+            //{
+            //    var err = ex.Message;
+            //}
         }
 
         private static string GetInlinePrincipal(string msg)

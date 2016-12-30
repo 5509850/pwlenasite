@@ -21,7 +21,7 @@ namespace lenapw.test.Controllers
 
         static class Bot
         {
-            public static readonly TelegramBotClient Api = new TelegramBotClient("<Bot Token>");            
+            public static readonly TelegramBotClient Api = new TelegramBotClient("<Token Bot>");            
         }
 
 
@@ -29,7 +29,7 @@ namespace lenapw.test.Controllers
 1000 20 5
 -------------------------
 <Loan Amount - $> 
-<Loan term - years> 
+<Loan Term - years> 
 <Annual Interest Rate - %> 
 <Monthly Maintenance Fee - $> (optional)";
 
@@ -37,7 +37,7 @@ namespace lenapw.test.Controllers
 @LoanCalculatorBot 1000 20 5
 -------------------------
 <Loan Amount - $> 
-<Loan term - years> 
+<Loan Term - years> 
 <Annual Interest Rate - %> 
 <Monthly Maintenance Fee - $> (optional)";
         
@@ -52,40 +52,18 @@ namespace lenapw.test.Controllers
         {
             return new Collection<Client>
                        {
-                           new Client { Id = 1, Title = Environment.Version.Build.ToString()},
-                           new Client { Id = 2, Title = Environment.Version.Major.ToString()},
-                           new Client { Id = 3, Title = Environment.Version.MajorRevision.ToString()},
-                           new Client { Id = 4, Title = Environment.Version.Minor.ToString()},
-                           new Client { Id = 5, Title = Environment.Version.MinorRevision.ToString()},
-                           new Client { Id = 6, Title = Environment.Version.Revision.ToString()},
-                           new Client { Id = 7, Title = Environment.Version.ToString()}
+                           new Client { Id = 21, Title = "You're winner!"}
                        };
         }
 
         public ICollection<Client> Get(int id)
-        {
-            //http://localhost:18442/api/webhookcredit/5
-            //http://localhost:18442/api/webhookcredit/get/5
-
-            if (id == 555)
-            {
-                Bot.Api.SetWebhookAsync("https://lena.pw/api/webhookcredit").Wait();
+        {                   
                 return new Collection<Client>
                        {
                             {
-                                new Client { Id = id, Title = "webhook set up succesful" }
+                                new Client { Id = id, Title = "I win again! Just like always!" }
                             }
-                       };
-            }
-            else
-            {                
-                return new Collection<Client>
-                       {
-                            {
-                                new Client { Id = id, Title = "wrong" }
-                            }
-                       };
-            }   
+                       };            
         }
 
         public async Task<IHttpActionResult> Post(Update update)
