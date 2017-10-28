@@ -26,8 +26,6 @@ namespace pw.lena.master.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::Specific.Droid.Resource.String.ApplicationName = global::pw.lena.master.Droid.Resource.String.ApplicationName;
-			global::Specific.Droid.Resource.String.Hello = global::pw.lena.master.Droid.Resource.String.Hello;
 		}
 		
 		public partial class Attribute

@@ -68,11 +68,13 @@ namespace pw.lena.slave.winpc
 
         private void SetAutoRun()
         {
+#if !DEBUG
             if (!utils.GetAuturunValue())
-            {
-                if (!utils.SetAutorunValue(true))
-                    MessageBox.Show("error autorun set!");
-            }
+                {
+                    if (!utils.SetAutorunValue(true))
+                        MessageBox.Show("error autorun set!");
+                }
+#endif
         }
 
         private void SystemEvents_PowerModeChanged(object sender, PowerModeChangedEventArgs e)

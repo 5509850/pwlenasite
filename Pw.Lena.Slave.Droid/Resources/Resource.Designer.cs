@@ -28,8 +28,6 @@ namespace Pw.Lena.Slave.Droid
 		{
 			global::Plugin.Vibrate.Resource.String.ApplicationName = global::Pw.Lena.Slave.Droid.Resource.String.ApplicationName;
 			global::Plugin.Vibrate.Resource.String.Hello = global::Pw.Lena.Slave.Droid.Resource.String.Hello;
-			global::Specific.Droid.Resource.String.ApplicationName = global::Pw.Lena.Slave.Droid.Resource.String.ApplicationName;
-			global::Specific.Droid.Resource.String.Hello = global::Pw.Lena.Slave.Droid.Resource.String.Hello;
 		}
 		
 		public partial class Animation
