@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<familyset>
+  <family>
+    <nameset>
+      <name>oswald</name>
+    </nameset>
+    <fileset>
+      <file>Oswald-Regular.ttf</file>
+    </fileset>
+  </family>
+  <family>
+    <nameset>
+      <name>sourcesanspro</name>
+    </nameset>
+    <fileset>
+      <file>SourceSansPro-Regular.otf</file>
+    </fileset>
+  </family>
+</familyset>

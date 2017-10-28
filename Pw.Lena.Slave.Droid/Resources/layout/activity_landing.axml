@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:id="@+id/activityContainer">
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar" />
+    <FrameLayout
+        android:layout_below="@id/toolbar"
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+  </RelativeLayout>
+  <LinearLayout
+      style="@style/AppMenu"
+      android:id="@+id/appMenu"
+      android:layout_gravity="start"
+      android:clickable="true">
+    <LinearLayout
+        style="@style/AppMenu_Menu">
+      <ImageView
+          android:src="@drawable/logo_app_menu"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
+      <ListView
+          style="@style/AppMenu_Menu_ListView"
+          android:id="@+id/appMenuListView" />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/AppMenu_StatusBar">
+      <Pw.Lena.Slave.Droid.UI.TextView
+          android:id="@+id/appMenuSyncMessage"
+          style="@style/AppMenu_StatusBar_SyncMessage" />
+      <ImageButton
+          style="@style/AppMenu_StatusBar_ActionButton"
+          android:src="@drawable/sync" />
+    </LinearLayout>
+  </LinearLayout>
+</android.support.v4.widget.DrawerLayout>

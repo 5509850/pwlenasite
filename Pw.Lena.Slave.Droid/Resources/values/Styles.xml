@@ -1,0 +1,284 @@
+﻿<resources>
+
+  <style name="AppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+    <item name="windowNoTitle">true</item>
+    <item name="windowActionBar">false</item>
+    <item name="windowActionModeOverlay">true</item>
+    <item name="android:windowActionModeOverlay">true</item>
+    <item name="actionModeBackground">@color/Primary</item>
+    <item name="android:actionModeBackground">@color/Primary</item>
+    <item name="actionModeCloseDrawable">@drawable/close</item>
+    <item name="android:actionModeCloseDrawable">@drawable/close</item>
+    <item name="colorPrimary">@color/Primary</item>
+    <item name="colorControlNormal">#dadada</item>
+    <item name="colorControlActivated">#a3c644</item>
+    <item name="colorControlHighlight">#a3c644</item>
+    <item name="android:actionMenuTextColor">#000000</item>
+    <item name="android:itemBackground">#ffffff</item>
+  </style>
+
+  <style name="AppTheme" parent="AppTheme.Base">
+    <item name="android:windowBackground">@color/WindowBackground</item>
+    <item name="android:textViewStyle">@style/TextView</item>
+    <item name="editTextStyle">@style/EditText</item>
+    <item name="spinnerStyle">@style/Spinner</item>
+    <item name="buttonStyle">@style/Button</item>
+    <item name="imageButtonStyle">@style/ImageButton</item>
+  </style>
+
+<style name="AppTheme.Splash">
+  <item name="android:windowBackground">@drawable/splash</item>
+  <item name="android:windowFullscreen">true</item>
+</style>
+
+  <style name="AppTheme.Pin">
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <item name="android:colorBackgroundCacheHint">@null</item>
+    <item name="android:windowIsTranslucent">true</item>
+    <item name="android:windowAnimationStyle">@android:style/Animation</item>
+  </style>
+
+  <style name="TextView" parent="android:Widget.TextView">
+    <item name="font">sourcesanspro</item>
+    <item name="android:textSize">16sp</item>
+    <item name="android:textColor">#666666</item>
+    <item name="android:textAllCaps">false</item>
+  </style>
+
+  <style name="EditText" parent="Widget.AppCompat.EditText">
+    <item name="font">sourcesanspro</item>
+    <item name="android:layout_marginLeft">@dimen/edit_text_horizontal_inset</item>
+    <item name="android:layout_marginRight">@dimen/edit_text_horizontal_inset</item>
+    <item name="android:paddingBottom">16dp</item>
+    <item name="android:textSize">16sp</item>
+    <item name="android:textColor">#666666</item>
+    <item name="android:textColorHint">#CCCCCC</item>
+  </style>
+
+  <style name="Spinner" parent="Widget.AppCompat.Spinner.Underlined">
+    <item name="font">sourcesanspro</item>
+    <item name="android:editable">false</item>
+    <item name="android:focusable">false</item>
+    <item name="android:focusableInTouchMode">false</item>
+    <item name="android:layout_marginLeft">@dimen/spinner_horizontal_inset</item>
+    <item name="android:layout_marginRight">@dimen/spinner_horizontal_inset</item>
+    <item name="android:longClickable">false</item>
+    <item name="android:paddingBottom">16dp</item>
+    <item name="android:textSize">16sp</item>
+    <item name="android:textColor">#666666</item>
+    <item name="android:textColorHint">#CCCCCC</item>
+  </style>
+
+  <style name="Button" parent="Widget.AppCompat.Button">
+    <item name="font">oswald</item>
+    <item name="android:textSize">18sp</item>
+    <item name="android:textColor">#ffffff</item>
+  </style>
+
+  <style name="Button.Blue" parent="Widget.AppCompat.Button">
+    <item name="font">oswald</item>
+    <item name="android:gravity">center</item>
+    <item name="android:textSize">22sp</item>
+    <item name="android:textColor">#ffffff</item>
+    <item name="android:background">#39C2D7</item>
+  </style>
+
+  <style name="Button.Green">
+    <item name="android:background">@drawable/button_green_background</item>
+  </style>
+
+  <style name="ImageButton" parent="android:Widget.ImageButton">
+    <item name="android:background">?android:selectableItemBackground</item>
+    <item name="android:minWidth">44dp</item>
+    <item name="android:minHeight">44dp</item>
+  </style>
+
+  <style name="ToolbarTitle">
+    <item name="font">sourcesanspro</item>
+    <item name="android:textColor">#ffffff</item>
+    <item name="android:textSize">18sp</item>
+    <item name="android:textAllCaps">true</item>
+  </style>
+
+  <style name="pinText">
+    <item name="android:textSize">@dimen/pin_text_size</item>
+    <item name="android:minHeight">60dp</item>
+    <item name="android:minWidth">60dp</item>
+    <item name="android:textColor">@color/pincolor</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:background">@drawable/pinback</item>
+    <item name="android:inputType">textPassword</item>
+    <item name="android:layout_margin">@dimen/pin_horizontal_margin</item>
+    <item name="android:padding">@dimen/pin_horizontal_padding</item>
+  </style>
+
+  <style name="pinKeyboard">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textColor">#333</item>
+    <item name="android:background">@drawable/pinbutton</item>
+    <item name="android:textSize">55sp</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:minHeight">80dp</item>
+  </style>
+
+  <style name="AppMenu">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:orientation">vertical</item>
+    <item name="android:background">@color/appMenuBackground</item>
+  </style>
+
+  <style name="AppMenu_Menu">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:orientation">vertical</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:layout_marginTop">@dimen/appMenuTopIndent</item>
+    <item name="android:layout_marginLeft">@dimen/appMenuLeftIndent</item>
+    <item name="android:layout_marginRight">@dimen/appMenuRightIndent</item>
+  </style>
+
+  <style name="AppMenu_Menu_ListView">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:layout_marginTop">@dimen/appMenuSpaceBetweenLogoAndItems</item>
+    <item name="android:divider">@color/appMenuItemDivider</item>
+    <item name="android:dividerHeight">@dimen/appMenuItemDividerHeight</item>
+  </style>
+
+  <style name="AppMenu_StatusBar">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:orientation">horizontal</item>
+    <item name="android:minHeight">@dimen/appMenuStatusBarHeight</item>
+    <item name="android:layout_gravity">bottom</item>
+    <item name="android:background">@color/appMenuStatusBarBackground</item>
+  </style>
+
+  <style name="ImageButton" parent="android:Widget.ImageButton">
+    <item name="android:background">?android:selectableItemBackground</item>
+    <item name="android:minWidth">44dp</item>
+    <item name="android:minHeight">44dp</item>
+  </style>
+
+  <style name ="AppMenu_StatusBar_ActionButton" parent ="ImageButton">
+    <item name="android:layout_width">44dp</item>
+    <item name="android:layout_height">44dp</item>
+    <item name="android:background">@null</item>
+    <item name="android:layout_gravity">center_vertical</item>
+    <item name="android:layout_marginRight">25dp</item>
+  </style>
+
+  <style name="AppMenu_StatusBar_SyncMessage">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:layout_marginLeft">@dimen/appMenuLeftIndent</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:gravity">fill_vertical</item>
+    <item name="font">sourcesanspro</item>
+    <item name="android:textSize">@dimen/appMenuStatusBarTextSize</item>
+    <item name="android:textColor">@color/appMenuText</item>
+  </style>
+
+
+  <!-- Landing -->
+
+  <style name="Landing_TakePhoto_Text">
+    <item name="android:background">@android:color/transparent</item>
+    <item name="android:paddingTop">9dp</item>
+    <item name="font">oswald</item>
+    <item name="android:textColor">#ffffff</item>
+    <item name="android:textSize">22sp</item>
+    <item name="android:textAllCaps">true</item>
+  </style>
+
+  <style name="Landing_Statistic">
+    <item name="android:background">@color/landing_statistic_background</item>
+    <item name="android:layout_height">142dp</item>
+  </style>
+
+  <style name="Landing_Statistic_Item_Count">
+    <item name="font">oswald</item>
+    <item name="android:textColor">#ffffff</item>
+    <item name="android:textSize">52sp</item>
+    <item name="android:layout_marginTop">-14dp</item>
+    <item name="android:layout_marginBottom">-7dp</item>
+  </style>
+
+  <style name="Landing_Statistic_Item_Type">
+    <item name="font">oswald</item>
+    <item name="android:textColor">#ffffff</item>
+    <item name="android:textSize">16sp</item>
+    <item name="android:textAllCaps">true</item>
+    <item name="android:layout_marginBottom">3dp</item>
+  </style>
+
+  <style name="Landing_Statistic_Item_TakeCare">
+    <item name="font">sourcesanspro</item>
+    <item name="android:textColor">@color/statistic_item_takeCare</item>
+    <item name="android:textSize">12sp</item>
+    <item name="android:textAllCaps">true</item>
+  </style>
+
+  <style name="Landing_Statistic_Separator">
+    <item name="android:layout_width">1dp</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:layout_marginTop">15dp</item>
+    <item name="android:layout_marginBottom">15dp</item>
+    <item name="android:background">@color/landing_statistic_separator</item>
+  </style>
+
+  <!-- App Menu -->
+
+  <style name="AppMenu_Menu_Item">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:orientation">horizontal</item>
+    <item name="android:minHeight">@dimen/appMenuItemHeight</item>
+    <item name="android:descendantFocusability">blocksDescendants</item>
+  </style>
+
+  <style name="AppMenu_Menu_Item_Name">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:gravity">fill_vertical</item>
+    <item name="font">oswald</item>
+    <item name="android:textSize">@dimen/appMenuItemTextSize</item>
+    <item name="android:textColor">@color/appMenuText</item>
+  </style>
+
+  <style name ="AppMenu_Menu_Item_ActionButton" parent ="ImageButton">
+    <item name="android:layout_width">44dp</item>
+    <item name="android:layout_height">44dp</item>
+    <item name="android:background">@null</item>
+    <item name="android:layout_marginRight">-10dp</item>
+    <item name="android:layout_gravity">center_vertical</item>
+  </style>
+
+  <style name="pinTest">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textColor">#333</item>
+    <item name="android:background">@drawable/pinbutton</item>
+    <item name="android:textSize">55sp</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:minHeight">80dp</item>
+  </style>
+
+  <style name="TextViewTest">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textColor">#333</item>
+    <item name="android:background">@drawable/pinbutton</item>
+    <item name="android:textSize">15sp</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:minHeight">80dp</item>
+  </style>
+
+
+</resources>

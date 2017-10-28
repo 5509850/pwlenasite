@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+  <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:clickable="true"
+        android:id="@+id/takePhotoLayout">
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/take_photo" />
+      <Pw.Lena.Slave.Droid.UI.TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:id="@+id/Landing_TakePhoto"
+          android:text="Landing_TakePhoto"
+          style="@style/Landing_TakePhoto_Text" />
+    </LinearLayout>
+  </FrameLayout>
+  <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:gravity="center_vertical"
+      style="@style/Landing_Statistic">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:clickable="true"
+        android:id="@+id/spendingsLayout">
+      <Pw.Lena.Slave.Droid.UI.TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="0"
+          style="@style/Landing_Statistic_Item_Count"
+          android:id="@+id/spendingCountTextView" />
+      <Pw.Lena.Slave.Droid.UI.TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/Landing_Spendings"
+          android:text="Landing_Spendings"
+          style="@style/Landing_Statistic_Item_Type" />
+      <LinearLayout
+          android:orientation="horizontal"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+        <Pw.Lena.Slave.Droid.UI.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            style="@style/Landing_Statistic_Item_TakeCare"
+            android:id="@+id/takeCareSpendingCountTextView" />
+        <Pw.Lena.Slave.Droid.UI.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/landing_takeCare"
+            android:text="Landing_TakeCare"
+            style="@style/Landing_Statistic_Item_TakeCare" />
+      </LinearLayout>
+    </LinearLayout>
+    <View
+        style="@style/Landing_Statistic_Separator" />
+    <LinearLayout
+        android:id="@+id/layout_attachments"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:clickable="true">
+      <Pw.Lena.Slave.Droid.UI.TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="0"
+          style="@style/Landing_Statistic_Item_Count"
+          android:id="@+id/attachmentCountTextView" />
+      <Pw.Lena.Slave.Droid.UI.TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" 
+          android:id ="@+id/landing_attachments"
+          android:text="Landing Attachments"
+          style="@style/Landing_Statistic_Item_Type" />
+      <LinearLayout
+          android:orientation="horizontal"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+        <Pw.Lena.Slave.Droid.UI.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            style="@style/Landing_Statistic_Item_TakeCare"
+            android:id="@+id/takeCareAttachmentCountTextView" />
+        <Pw.Lena.Slave.Droid.UI.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/landing_takeCare2"
+            android:text="Landing TakeCare2"
+            style="@style/Landing_Statistic_Item_TakeCare" />
+      </LinearLayout>
+    </LinearLayout>
+  </LinearLayout>
+</LinearLayout>

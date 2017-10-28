@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <dimen name="EditTextHeight">44dp</dimen>
+  <dimen name="EditTextPaddingLeft">13dp</dimen>
+  <dimen name="EditTextPaddingRight">13dp</dimen>
+  <dimen name="EditTextBorderWidth">1dp</dimen>
+  <dimen name="VerticalListDividerHeight">1dp</dimen>
+  <dimen name="appMenuTopIndent">44dp</dimen>
+  <dimen name="appMenuLeftIndent">36dp</dimen>
+  <dimen name="appMenuRightIndent">36dp</dimen>
+  <dimen name="appMenuScreenIndent">55dp</dimen>
+  <dimen name="appMenuSpaceBetweenLogoAndItems">55dp</dimen>
+  <dimen name="appMenuItemDividerHeight">1dp</dimen>
+  <dimen name="appMenuItemHeight">52dp</dimen>
+  <dimen name="appMenuItemTextSize">16sp</dimen>
+  <dimen name="appMenuStatusBarHeight">95sp</dimen>
+  <dimen name="appMenuStatusBarTextSize">13sp</dimen>
+
+  <!-- EditText and Spinner Inset Fix -->
+  <dimen name="abc_control_inset_material">8dp</dimen>
+  <dimen name="abc_edit_text_inset_bottom_material">8dp</dimen>
+  <dimen name="abc_edit_text_inset_top_material">8dp</dimen>
+
+  <dimen name="edit_text_horizontal_inset">-4dp</dimen>
+  <dimen name="spinner_horizontal_inset">-8dp</dimen>
+
+  <!-- Attachments -->
+  <dimen name="attachment_list_item_indent">6dp</dimen>
+
+  <!-- Custom Dimensions -->
+  <dimen name="attachments_list_item_inset">8dp</dimen>
+  <dimen name="content_horizontal_indent">16dp</dimen>
+  <dimen name="content_vertical_indent">16dp</dimen>
+  <dimen name="dialog_screen_indent">42dp</dimen>
+  <dimen name="input_top_indent">24dp</dimen>
+  <dimen name="input_horizontal_inset">24dp</dimen>
+  <dimen name="input_vertical_inset">8dp</dimen>
+  <dimen name="item_header_height">48dp</dimen>
+  <dimen name="item_header_horizontal_inset">16dp</dimen>
+  <dimen name="item_sub_height">48dp</dimen>
+  <dimen name="item_sub_horizontal_inset">32dp</dimen>
+  <dimen name="settings_avatar_size">90dp</dimen>
+  <dimen name="settings_login_item_indent">18dp</dimen>
+  <dimen name="settings_login_vertical_indent">34dp</dimen>
+  <dimen name="spending_details_list_last_item_bottom_inset">55dp</dimen>
+  <dimen name="take_photo_action_panel_buttons_horizontal_inset">37dp</dimen>
+  <dimen name="take_photo_action_panel_item_inset">16dp</dimen>
+  <dimen name="take_photo_action_panel_height">162dp</dimen>
+  <dimen name="take_photo_gallery_item_right_inset">10dp</dimen>
+  <dimen name="take_photo_gallery_item_size">47dp</dimen>
+  <dimen name="radio_button_text_padding_left">20dp</dimen>
+  <dimen name="radio_button_text_margin_top">15dp</dimen>
+  <dimen name="project_cost_object_panel_item_inset">10dp</dimen>
+  <dimen name="approver_panel_item_inset">5dp</dimen>
+  <dimen name="approver_vertical_divider_height">32dp</dimen>
+  <dimen name="steps_layout_marginTop">20dp</dimen>
+  <dimen name="error_layout_marginTop">20dp</dimen>
+  <dimen name="padding_layout_bottom">56dp</dimen>
+
+  <dimen name="pin_horizontal_margin">10dp</dimen>
+  <dimen name="pin_horizontal_padding">20dp</dimen>
+  <dimen name="pin_text_size">40sp</dimen>
+  <dimen name="pin_button_space">10dp</dimen>
+  
+  
+
+</resources>

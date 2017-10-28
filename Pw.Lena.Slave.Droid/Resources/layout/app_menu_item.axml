@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/AppMenu_Menu_Item">
+  <Pw.Lena.Slave.Droid.UI.TextView
+      style="@style/AppMenu_Menu_Item_Name"
+      android:id="@+id/appMenuItemText" />
+  <ImageButton
+      style="@style/AppMenu_Menu_Item_ActionButton"
+      android:id="@+id/appMenuItemButton" />
+</LinearLayout>

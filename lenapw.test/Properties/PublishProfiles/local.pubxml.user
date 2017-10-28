@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\inetpub\wwwroot</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/DevExpress.Data.v11.1.dll">
+      <publishTime>04/05/2012 16:06:12</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Printing.v11.1.Core.dll">
+      <publishTime>04/05/2012 16:06:20</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Utils.v11.1.dll">
+      <publishTime>04/05/2012 16:06:22</publishTime>
+    </File>
+    <File Include="bin/DevExpress.XtraEditors.v11.1.dll">
+      <publishTime>04/05/2012 16:06:23</publishTime>
+    </File>
+    <File Include="bin/DevExpress.XtraGrid.v11.1.dll">
+      <publishTime>04/05/2012 16:06:24</publishTime>
+    </File>
+    <File Include="bin/DevExpress.XtraLayout.v11.1.dll">
+      <publishTime>04/05/2012 16:06:24</publishTime>
+    </File>
+    <File Include="bin/DevExpress.XtraVerticalGrid.v11.1.dll">
+      <publishTime>04/05/2012 16:06:26</publishTime>
+    </File>
+    <File Include="bin/img/add_sprite.svg">
+      <publishTime>12/23/2016 16:47:43</publishTime>
+    </File>
+    <File Include="bin/lenapw.test.dll">
+      <publishTime>04/20/2017 15:37:57</publishTime>
+    </File>
+    <File Include="bin/lenapw.test.pdb">
+      <publishTime>04/20/2017 15:37:57</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
+      <publishTime>11/30/2016 16:07:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.DependencyCollector.dll">
+      <publishTime>12/07/2016 11:45:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
+      <publishTime>12/07/2016 11:50:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
+      <publishTime>12/06/2016 15:15:48</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Web.dll">
+      <publishTime>12/07/2016 11:49:10</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.WindowsServer.dll">
+      <publishTime>12/07/2016 11:50:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ApplicationInsights.dll">
+      <publishTime>12/06/2016 15:09:52</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Diagnostics.Tracing.EventSource.dll">
+      <publishTime>12/01/2015 14:31:46</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Threading.Tasks.dll">
+      <publishTime>05/02/2016 15:53:19</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Threading.Tasks.Extensions.Desktop.dll">
+      <publishTime>05/02/2016 15:53:19</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Threading.Tasks.Extensions.dll">
+      <publishTime>05/02/2016 15:53:19</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>02/25/2016 11:12:33</publishTime>
+    </File>
+    <File Include="bin/MLDBUtils.dll">
+      <publishTime>04/20/2017 15:28:47</publishTime>
+    </File>
+    <File Include="bin/MLDBUtils.pdb">
+      <publishTime>04/20/2017 15:28:47</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>07/04/2016 13:31:52</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>01/28/2015 04:02:42</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>01/28/2015 04:02:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>01/28/2015 04:03:46</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>01/28/2015 04:02:18</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>01/28/2015 04:02:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/Telegram.Bot.dll">
+      <publishTime>09/16/2016 01:32:10</publishTime>
+    </File>
+    <File Include="calc.html">
+      <publishTime>01/23/2017 18:27:24</publishTime>
+    </File>
+    <File Include="calculator.html">
+      <publishTime>12/23/2016 17:12:37</publishTime>
+    </File>
+    <File Include="chart.html">
+      <publishTime>12/19/2016 12:34:10</publishTime>
+    </File>
+    <File Include="css/angularPrint.css">
+      <publishTime>12/12/2016 11:14:32</publishTime>
+    </File>
+    <File Include="css/anychart-ui.min.css">
+      <publishTime>12/13/2016 16:57:12</publishTime>
+    </File>
+    <File Include="css/bootstrap-theme.css">
+      <publishTime>12/12/2016 11:14:32</publishTime>
+    </File>
+    <File Include="css/bootstrap.css">
+      <publishTime>12/12/2016 11:14:32</publishTime>
+    </File>
+    <File Include="css/MyStyleSheet.css">
+      <publishTime>12/23/2016 16:56:53</publishTime>
+    </File>
+    <File Include="Default.aspx">
+      <publishTime>12/12/2016 11:14:32</publishTime>
+    </File>
+    <File Include="diagram.html">
+      <publishTime>12/16/2016 13:14:38</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>12/12/2016 11:14:32</publishTime>
+    </File>
+    <File Include="img/100.jpg">
+      <publishTime>12/23/2016 15:06:49</publishTime>
+    </File>
+    <File Include="img/add_sprite.svg">
+      <publishTime>12/23/2016 16:47:43</publishTime>
+    </File>
+    <File Include="img/back.png">
+      <publishTime>12/09/2016 10:51:06</publishTime>
+    </File>
+    <File Include="img/c.jpg">
+      <publishTime>12/15/2016 14:21:22</publishTime>
+    </File>
+    <File Include="img/en.png">
+      <publishTime>12/15/2016 16:02:35</publishTime>
+    </File>
+    <File Include="img/f1.png">
+      <publishTime>12/13/2016 12:50:16</publishTime>
+    </File>
+    <File Include="img/f1r.png">
+      <publishTime>12/14/2016 12:15:02</publishTime>
+    </File>
+    <File Include="img/f2.png">
+      <publishTime>12/13/2016 15:41:47</publishTime>
+    </File>
+    <File Include="img/f2r.png">
+      <publishTime>12/14/2016 12:15:11</publishTime>
+    </File>
+    <File Include="img/logo.png">
+      <publishTime>12/14/2016 12:45:07</publishTime>
+    </File>
+    <File Include="img/ru.png">
+      <publishTime>12/13/2016 14:33:50</publishTime>
+    </File>
+    <File Include="img/t.png">
+      <publishTime>12/23/2016 17:32:49</publishTime>
+    </File>
+    <File Include="js/angular.min.js">
+      <publishTime>12/12/2016 11:14:32</publishTime>
+    </File>
+    <File Include="js/angularPrint.js">
+      <publishTime>12/12/2016 11:14:32</publishTime>
+    </File>
+    <File Include="js/anychart-bundle.min.js">
+      <publishTime>03/10/2017 11:59:34</publishTime>
+    </File>
+    <File Include="js/calce.js">
+      <publishTime>12/23/2016 13:33:09</publishTime>
+    </File>
+    <File Include="js/calcr.js">
+      <publishTime>01/23/2017 18:26:47</publishTime>
+    </File>
+    <File Include="js/calculator.js">
+      <publishTime>12/12/2016 11:14:32</publishTime>
+    </File>
+    <File Include="js/urlparametr.js">
+      <publishTime>12/22/2016 10:10:41</publishTime>
+    </File>
+    <File Include="libs/MLDBUtils.dll">
+      <publishTime>07/04/2016 10:46:50</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>12/12/2016 11:14:32</publishTime>
+    </File>
+    <File Include="sqlinstall.aspx">
+      <publishTime>04/19/2017 17:45:58</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>04/20/2017 17:41:34</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

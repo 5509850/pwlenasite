@@ -1,0 +1,219 @@
+﻿<#
+	// Read the link below to find out how to re-run this template on every build.
+	// https://msdn.microsoft.com/en-us/library/dd820620.aspx - Regenerating the code automatically section
+#>
+<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ output extension=".cs" #>
+<#
+	var classDefinitions = Directory
+		.GetFiles(Path.Combine(Host.ResolveAssemblyReference("$(ProjectDir)"), @"Resources\layout"), "*.*xml")
+		.Select(LayoutFileParser.Parse)
+		.Where(x => x != null)
+		.ToArray();
+#>
+using Android.App;
+using Android.Views;
+using Android.Widget;
+
+namespace Pw.Lena.Slave.Droid.UI.ViewHolders
+{
+<# foreach (var classDefinition in classDefinitions) { #>
+	public class <#= classDefinition.ClassName #> : Java.Lang.Object
+	{
+		private readonly View view;
+
+<# foreach (var viewDefinition in classDefinition.ViewDefinitions) { #>
+		private <#= viewDefinition.ViewType #> <#= viewDefinition.VariableName #>;
+<# } #>
+
+		public <#= classDefinition.ClassName #>(View view)
+		{
+			this.view = view;
+		}
+
+		public <#= classDefinition.ClassName #>(Activity activity)
+		{
+			view = activity.FindViewById(global::Android.Resource.Id.Content);
+		}
+
+<# foreach (var viewDefinition in classDefinition.ViewDefinitions) { #>
+		public <#= viewDefinition.ViewType #> <#= viewDefinition.PropertyName #>
+		{
+			get { return <#= viewDefinition.VariableName #> ?? (<#= viewDefinition.VariableName #> = view.FindViewById<<#= viewDefinition.ViewType #>>(Resource.Id.<#= viewDefinition.ResourceName #>)); }
+		}
+<# if (classDefinition.ViewDefinitions.Last() != viewDefinition) { #>
+
+<# } #>
+<# } #>
+	}
+<# if (classDefinitions.Last() != classDefinition) { #>
+
+<# } #>
+<# } #>
+}
+<#+
+	public class LayoutFileParser
+	{
+		public static LayoutClassDefinition Parse(string layoutPath)
+		{
+			var classDefinition = ParseLayout(layoutPath);
+
+			if (classDefinition.ViewDefinitions.Any())
+			{
+				return classDefinition;
+			}
+			else
+			{
+				return null;
+			}
+		}
+
+		private static LayoutClassDefinition ParseLayout(string layoutPath)
+		{
+			var document = XDocument.Load(layoutPath);
+			var views = document.Descendants();
+
+			var classDefinition = new LayoutClassDefinition
+			{
+				ClassName = NormalizeName(Path.GetFileNameWithoutExtension(layoutPath), false) + "ViewHolder"
+			};
+
+			foreach (var view in views)
+			{
+				if (!view.Name.LocalName.Equals("include", StringComparison.OrdinalIgnoreCase))
+				{
+					var viewDefinition = ParseView(view);
+
+					if (viewDefinition != null) 
+					{
+						classDefinition.ViewDefinitions.Add(viewDefinition);
+					}
+				}
+				else
+				{
+					var viewDefinitions = ParseInclude(Path.GetDirectoryName(layoutPath), view);
+
+					classDefinition.ViewDefinitions.AddRange(viewDefinitions);
+				}
+			}
+
+			return classDefinition;
+		}
+
+		private static LayoutViewDefinition ParseView(XElement view)
+		{
+			var id = view.Attribute(GetNameWithNamespace("id"));
+
+			if (id != null)
+			{
+				var viewDefinition = new LayoutViewDefinition
+				{
+					ViewType = NormalizeViewType(view.Name.LocalName),
+					VariableName = NormalizeName(id.Value, true),
+					PropertyName = NormalizeName(id.Value, false),
+					ResourceName = NormalizeResourceName(id.Value)
+				};
+
+				return viewDefinition;
+			}
+			else
+			{
+				return null;
+			}
+		}
+
+		private static IEnumerable<LayoutViewDefinition> ParseInclude(string layoutRoot, XElement view)
+		{
+			var layoutPath = Directory.GetFiles(layoutRoot, view.Attribute("layout").Value.Replace("@layout/", string.Empty) + ".*xml").First();
+			var id = view.Attribute(GetNameWithNamespace("id"));
+			var viewDefinitions = new List<LayoutViewDefinition>();
+
+			if (id != null)
+			{
+				var document = XDocument.Load(layoutPath);
+
+				var viewDefinition = new LayoutViewDefinition
+				{
+					ViewType = NormalizeViewType(document.Root.Name.LocalName),
+					VariableName = NormalizeName(id.Value, true),
+					PropertyName = NormalizeName(id.Value, false),
+					ResourceName = NormalizeResourceName(id.Value)
+				};
+
+				viewDefinitions.Add(viewDefinition);
+			}
+			else 
+			{
+				var classDefinition = ParseLayout(layoutPath);
+
+				viewDefinitions.AddRange(classDefinition.ViewDefinitions);
+			}
+
+			return viewDefinitions;
+		}
+
+		private static XName GetNameWithNamespace(string localName)
+		{
+			return XName.Get(localName, "http://schemas.android.com/apk/res/android");
+		}
+
+		private static string NormalizeViewType(string rawViewType)
+		{
+			return Regex.Replace(rawViewType, @"(^\w{1}|\.\w{1})", x => x.Groups[1].Value.ToUpperInvariant());
+		}
+
+		private static string NormalizeName(string rawName, bool variable)
+		{
+			var name = rawName.Replace("@+id/", string.Empty);
+
+			if (variable)
+			{
+				return Char.ToLowerInvariant(name[0]) + name.Substring(1);
+			}
+			else
+			{
+				name = Regex.Replace(name, @"(^\w{1})", x => x.Groups[1].Value.ToUpperInvariant());
+				name = Regex.Replace(name, @"_(\w{1})", x => x.Groups[1].Value.ToUpperInvariant());
+
+				return name;
+			}
+		}
+
+		private static string NormalizeResourceName(string rawName)
+		{
+			return rawName.Replace("@+id/", string.Empty);
+		}
+	}
+
+	public class LayoutClassDefinition
+	{
+		public LayoutClassDefinition()
+		{
+			ViewDefinitions = new List<LayoutViewDefinition>();
+		}
+
+		public string ClassName { get; set; }
+
+		public List<LayoutViewDefinition> ViewDefinitions { get; set; }
+	}
+
+	public class LayoutViewDefinition
+	{
+		public string ViewType { get; set; }
+
+		public string VariableName { get; set; }
+
+		public string PropertyName { get; set; }
+
+		public string ResourceName { get; set; }
+	}
+#>

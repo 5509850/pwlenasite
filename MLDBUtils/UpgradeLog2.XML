@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="MLDBUtils">
+</Property><Property Name="Solution File" Value="D:\ALL\VC\MLDBUtils\MLDBUtils.sln">
+</Property><Property Name="User Options File" Value="D:\ALL\VC\MLDBUtils\MLDBUtils.suo">
+</Property><Property Name="Date" Value="1 июля 2011 г.">
+</Property><Property Name="Time" Value="20:09">
+</Property><Property Name="Log Number" Value="2">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="MLDBUtils.sln" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\MLDBUtils.sln">
+</Event><Event ErrorLevel="0" Project="" Source="MLDBUtils.suo" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\MLDBUtils.suo">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="MLDBUtils.csproj" Description="Project file successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\MLDBUtils.csproj">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="MLDBUtils.csproj.user" Description="Project user file successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\MLDBUtils.csproj.user">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="AParamAdd.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\AParamAdd.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="AParamAdd.Designer.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\AParamAdd.Designer.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="AssemblyInfo.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="ChPwd.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\ChPwd.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="ChPwd.Designer.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\ChPwd.Designer.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="Class1.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\Class1.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="DXUtils.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\DXUtils.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="MessageBoxL.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\MessageBoxL.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="MessageBoxL.Designer.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\MessageBoxL.Designer.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="MLContextMenu.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\MLContextMenu.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="MLContextMenu.Designer.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\MLContextMenu.Designer.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="MLMenuUtils.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\MLMenuUtils.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="MyOBJ.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\MyOBJ.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="NewUser.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\NewUser.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="NewUser.Designer.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\NewUser.Designer.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="Properties\Settings.Designer.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="TaskPropertys.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\TaskPropertys.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="TaskPropertys.Designer.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\TaskPropertys.Designer.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="UserAdmin.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\UserAdmin.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="UserAdmin.Designer.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\UserAdmin.Designer.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="WaitForm.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\WaitForm.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="WaitForm.Designer.cs" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\WaitForm.Designer.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="app.config" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\app.config">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="Properties\Settings.settings" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="AParamAdd.resx" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\AParamAdd.resx">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="ChPwd.resx" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\ChPwd.resx">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="MessageBoxL.resx" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\MessageBoxL.resx">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="MLContextMenu.resx" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\MLContextMenu.resx">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="NewUser.resx" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\NewUser.resx">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="Properties\licenses.licx" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\Properties\licenses.licx">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="TaskPropertys.resx" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\TaskPropertys.resx">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="UserAdmin.resx" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\UserAdmin.resx">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="WaitForm.resx" Description="File successfully backed up as D:\ALL\VC\MLDBUtils\bu\Backup\WaitForm.resx">
+</Event><Event ErrorLevel="1" Project="MLDBUtils" Source="MLDBUtils.csproj" Description="Your project is targeting .NET Framework 2.0 or 3.0. If your project uses assemblies requiring a newer .NET Framework, your project will fail to build. You can change the .NET Framework version by clicking Properties on the project menu and then selecting a new version in the '.NET Framework' dropdown box. (In Visual Basic, this is located on the Compile tab by clicking the 'Advanced Compiler Options...' button.)">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="MLDBUtils.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="MLDBUtils" Source="MLDBUtils.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="MLDBUtils.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="MLDBUtils.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="MLDBUtils.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+
+    <script>
+        function outside(x) {
+            var tmp = 3;
+
+            function inside(y) {
+                alert(x + y + (++tmp)); // выведет 16
+            }
+
+            inside(10);
+        }
+
+    </script>
+
+</head>
+<body>
+    <div>test</div>
+    
+    <input type="button" onclick="outside(2)" value="Считать кроликов!" />
+</body>
+</html>

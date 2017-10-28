@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"    
+    android:orientation="vertical">
+
+  <include
+      android:id="@+id/toolbar"
+      layout="@layout/toolbar" />
+
+
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center_horizontal|center_vertical"
+      android:orientation="horizontal"
+      android:id="@+id/pinscreen"
+      android:padding="10dp">
+
+    <Pw.Lena.Slave.Droid.UI.TextView
+        android:id="@+id/p1"
+        style="@style/pinText" />
+
+    <Pw.Lena.Slave.Droid.UI.TextView
+        android:id="@+id/p2"        
+        android:enabled="false"
+        style="@style/pinText" />
+
+    <Pw.Lena.Slave.Droid.UI.TextView
+        android:id="@+id/p3"
+        android:enabled="false"        
+        style="@style/pinText"/>
+
+    <Pw.Lena.Slave.Droid.UI.TextView
+        android:id="@+id/p4"
+        android:enabled="false"
+        style="@style/pinText" />
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="fill_vertical"
+      android:layout_marginTop="2dp"
+      android:id="@+id/error"
+      android:orientation="vertical">
+    <RelativeLayout
+          android:id="@+id/layout_error_container"
+          android:layout_width="match_parent"
+          android:layout_height="36dp"
+          android:background="#80000000">
+      <ImageView
+          android:id="@+id/image_error_status"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignBottom="@+id/text_error"
+          android:layout_alignTop="@+id/text_error"
+          android:layout_centerVertical="true"
+          android:layout_marginLeft="16dp"
+          android:layout_marginRight="21dp"
+          android:src="@drawable/message_error" />
+      <Pw.Lena.Slave.Droid.UI.TextView
+          android:id="@+id/text_error"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:layout_toRightOf="@id/image_error_status"
+          android:textColor="#F2355E"
+          android:textSize="13sp"  />
+    </RelativeLayout>
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:gravity="fill_vertical"
+      android:id="@+id/keyboard"
+      android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:orientation="horizontal">
+
+      <Pw.Lena.Slave.Droid.UI.Button
+          android:id="@+id/btn_seven"
+          android:layout_marginLeft="@dimen/pin_button_space"
+          style="@style/pinKeyboard"
+          android:text="7" />
+
+      <Pw.Lena.Slave.Droid.UI.Button
+          android:id="@+id/btn_eight"
+          style="@style/pinKeyboard"
+          android:layout_marginLeft="@dimen/pin_button_space"
+          android:text="8" />
+
+      <Pw.Lena.Slave.Droid.UI.Button
+          android:id="@+id/btn_nine"
+          style="@style/pinKeyboard"
+          android:layout_marginLeft="@dimen/pin_button_space"
+          android:layout_marginRight="@dimen/pin_button_space"
+          android:text="9" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/pin_button_space"
+        android:orientation="horizontal">
+
+      <Pw.Lena.Slave.Droid.UI.Button
+          android:id="@+id/btn_four"
+          android:layout_marginLeft="@dimen/pin_button_space"
+          style="@style/pinKeyboard"
+          android:text="4" />
+
+      <Pw.Lena.Slave.Droid.UI.Button
+          android:id="@+id/btn_five"
+          style="@style/pinKeyboard"
+          android:layout_marginLeft="@dimen/pin_button_space"
+          android:text="5" />
+
+      <Pw.Lena.Slave.Droid.UI.Button
+          android:id="@+id/btn_six"
+          style="@style/pinKeyboard"
+          android:layout_marginLeft="@dimen/pin_button_space"
+          android:layout_marginRight="@dimen/pin_button_space"
+          android:text="6" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/pin_button_space"
+        android:orientation="horizontal">
+
+      <Pw.Lena.Slave.Droid.UI.Button
+          android:id="@+id/btn_one"
+          android:layout_marginLeft="@dimen/pin_button_space"
+          style="@style/pinKeyboard"
+          android:text="1" />
+
+      <Pw.Lena.Slave.Droid.UI.Button
+          android:id="@+id/btn_two"
+          style="@style/pinKeyboard"
+          android:layout_marginLeft="@dimen/pin_button_space"
+          android:text="2" />
+
+      <Pw.Lena.Slave.Droid.UI.Button
+          android:id="@+id/btn_three"
+          style="@style/pinKeyboard"
+          android:layout_marginLeft="@dimen/pin_button_space"
+          android:layout_marginRight="@dimen/pin_button_space"
+          android:text="3" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/pin_button_space"
+        android:orientation="horizontal">
+
+      <Pw.Lena.Slave.Droid.UI.Button
+          android:id="@+id/btn_clear"
+          android:layout_marginLeft="@dimen/pin_button_space"
+          style="@style/pinKeyboard"
+          android:text="X" />
+
+      <Pw.Lena.Slave.Droid.UI.Button
+          android:id="@+id/btn_zero"
+          style="@style/pinKeyboard"
+          android:layout_marginLeft="@dimen/pin_button_space"
+          android:text="0" />
+
+      <Pw.Lena.Slave.Droid.UI.Button
+          android:id="@+id/btn_back"
+          style="@style/pinKeyboard"
+          android:layout_marginLeft="@dimen/pin_button_space"
+          android:layout_marginRight="@dimen/pin_button_space"
+          android:text="&#x25C0;" />
+
+
+    </LinearLayout>
+
+
+  </LinearLayout>
+
+</LinearLayout>

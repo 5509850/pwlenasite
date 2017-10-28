@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <color name="Primary">#39c2d7</color>
+  <color name="content_background">#ffffff</color>
+  <color name="item_header_background">#E5E5E5</color>
+  <color name="WindowBackground">#FFFFFF</color>
+  <color name="EditTextBorderColor">#dadada</color>
+  <color name="EditTextBackgroundColor">#ffffff</color>
+  <color name="ListDividerColor">#eaeaea</color>
+  <color name="appMenuItemDivider">#8DCED8</color>
+  <color name="appMenuBackground">#1a9cb0</color>
+  <color name="appMenuStatusBarBackground">#00839b</color>
+  <color name="appMenuText">#ffffff</color>
+  <color name="LightBlue">#39C2D7</color>
+  <color name="take_photo_action_panel_background">#66000000</color>
+  <color name="take_photo_background">#2a2a2b</color>
+  <color name="snackbar_text_color">#ffffff</color>
+  <color name="action_bar_text_disable">#9CE1EB</color>
+  <color name="action_bar_text_enable">#ffffff</color>
+  <color name="step_background">#666666</color>
+  <color name="step_dark_icon">#25A1B4</color>
+
+  <color name="colorPrimary">#009688</color>
+  <color name="colorPrimaryDark">#00796B</color>
+  <color name="colorAccent">#FF4081</color>
+
+  <color name="disable_pin_border_color">#C0C0C0</color>
+  <color name="enable_pin_border_color">#4fa5d5</color>
+  <color name="disable_pin_star_color">#ffffff</color>
+  <color name="enable_pin_star_color">#000000</color>
+
+  <color name="keyboard_enable">#DDDDDD</color>
+  <color name="keyboard_pressed">#1E1E1E</color>
+
+  <color name="landing_statistic_background">#39c2d7</color>
+  <color name="statistic_item_takeCare">#d1eef4</color>
+  <color name="landing_statistic_separator">#75d4e3</color>
+
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>    
+    <string name="ApplicationName">Slave Droid</string>
+    <string name="guard_login_title">ENTER YOUR PIN</string>
+    <string name="empty"></string>
+
+  <!--App menu-->
+  <string name="appMenu_Home">HOME</string>
+  <string name="appMenu_StartTracker">Start Tracker</string>
+  <string name="appMenu_StopTracker">Stop Tracker</string>
+  <string name="appMenu_StartBeacon">Start Beacon</string>
+  <string name="appMenu_StopBeacon">Stop Beacon</string>
+  <string name="appMenu_Settings">SETTINGS</string>
+  
+</resources>

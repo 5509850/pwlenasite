@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="MLDBUtils">
+</Property><Property Name="Solution File" Value="D:\All\VC\MLDBUtils\MLDBUtils.sln">
+</Property><Property Name="User Options File" Value="D:\All\VC\MLDBUtils\MLDBUtils.suo">
+</Property><Property Name="Date" Value="19 октября 2006 г.">
+</Property><Property Name="Time" Value="11:46">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="MLDBUtils.sln" Description="File successfully backed up as D:\All\VC\MLDBUtils\Backup\MLDBUtils.sln">
+</Event><Event ErrorLevel="0" Project="" Source="MLDBUtils.suo" Description="File successfully backed up as D:\All\VC\MLDBUtils\Backup\MLDBUtils.suo">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="MLDBUtils.csproj" Description="Project file successfully backed up as D:\All\VC\MLDBUtils\Backup\MLDBUtils.csproj">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="MLDBUtils.csproj.user" Description="Project user file successfully backed up as D:\All\VC\MLDBUtils\Backup\MLDBUtils.csproj.user">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="AssemblyInfo.cs" Description="File successfully backed up as D:\All\VC\MLDBUtils\Backup\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="Class1.cs" Description="File successfully backed up as D:\All\VC\MLDBUtils\Backup\Class1.cs">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="MLDBUtils.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="MLDBUtils" Source="MLDBUtils.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="MLDBUtils.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="MLDBUtils.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="MLDBUtils" Source="MLDBUtils.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
