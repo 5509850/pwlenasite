@@ -2,3 +2,6 @@ packages
 bin
 obj
 TestResults
+/lenapw.test/Web.config
+/lenapw.test/Web.Debug.config
+/lenapw.test/Web.Release.config
